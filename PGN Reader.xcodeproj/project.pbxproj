@@ -9,7 +9,20 @@
 /* Begin PBXBuildFile section */
 		636FDA6317B678B9006BBAAD /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 636FDA6217B678B9006BBAAD /* main.cpp */; };
 		636FDA6517B678B9006BBAAD /* PGN_Reader.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 636FDA6417B678B9006BBAAD /* PGN_Reader.1 */; };
+		636FDA7217B678CA006BBAAD /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 636FDA7117B678CA006BBAAD /* XCTest.framework */; };
+		636FDA7817B678CA006BBAAD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 636FDA7617B678CA006BBAAD /* InfoPlist.strings */; };
+		636FDA8417B727B2006BBAAD /* PGNFile_Tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 636FDA8317B727B2006BBAAD /* PGNFile_Tests.mm */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		636FDA7C17B678CA006BBAAD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 636FDA5717B678B9006BBAAD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 636FDA5E17B678B9006BBAAD;
+			remoteInfo = "PGN Reader";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		636FDA5D17B678B9006BBAAD /* CopyFiles */ = {
@@ -28,6 +41,12 @@
 		636FDA5F17B678B9006BBAAD /* PGN Reader */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "PGN Reader"; sourceTree = BUILT_PRODUCTS_DIR; };
 		636FDA6217B678B9006BBAAD /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		636FDA6417B678B9006BBAAD /* PGN_Reader.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = PGN_Reader.1; sourceTree = "<group>"; };
+		636FDA6F17B678CA006BBAAD /* PGN Reader Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PGN Reader Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		636FDA7117B678CA006BBAAD /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		636FDA7517B678CA006BBAAD /* PGN Reader Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PGN Reader Tests-Info.plist"; sourceTree = "<group>"; };
+		636FDA7717B678CA006BBAAD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		636FDA7B17B678CA006BBAAD /* PGN Reader Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PGN Reader Tests-Prefix.pch"; sourceTree = "<group>"; };
+		636FDA8317B727B2006BBAAD /* PGNFile_Tests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PGNFile_Tests.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +57,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		636FDA6C17B678CA006BBAAD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				636FDA7217B678CA006BBAAD /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -45,6 +72,8 @@
 			isa = PBXGroup;
 			children = (
 				636FDA6117B678B9006BBAAD /* PGN Reader */,
+				636FDA7317B678CA006BBAAD /* PGN Reader Tests */,
+				636FDA7017B678CA006BBAAD /* Frameworks */,
 				636FDA6017B678B9006BBAAD /* Products */,
 			);
 			sourceTree = "<group>";
@@ -53,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				636FDA5F17B678B9006BBAAD /* PGN Reader */,
+				636FDA6F17B678CA006BBAAD /* PGN Reader Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -64,6 +94,33 @@
 				636FDA6417B678B9006BBAAD /* PGN_Reader.1 */,
 			);
 			path = "PGN Reader";
+			sourceTree = "<group>";
+		};
+		636FDA7017B678CA006BBAAD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				636FDA7117B678CA006BBAAD /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		636FDA7317B678CA006BBAAD /* PGN Reader Tests */ = {
+			isa = PBXGroup;
+			children = (
+				636FDA7417B678CA006BBAAD /* Supporting Files */,
+				636FDA8317B727B2006BBAAD /* PGNFile_Tests.mm */,
+			);
+			path = "PGN Reader Tests";
+			sourceTree = "<group>";
+		};
+		636FDA7417B678CA006BBAAD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				636FDA7517B678CA006BBAAD /* PGN Reader Tests-Info.plist */,
+				636FDA7617B678CA006BBAAD /* InfoPlist.strings */,
+				636FDA7B17B678CA006BBAAD /* PGN Reader Tests-Prefix.pch */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -86,6 +143,24 @@
 			productReference = 636FDA5F17B678B9006BBAAD /* PGN Reader */;
 			productType = "com.apple.product-type.tool";
 		};
+		636FDA6E17B678CA006BBAAD /* PGN Reader Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 636FDA7E17B678CA006BBAAD /* Build configuration list for PBXNativeTarget "PGN Reader Tests" */;
+			buildPhases = (
+				636FDA6B17B678CA006BBAAD /* Sources */,
+				636FDA6C17B678CA006BBAAD /* Frameworks */,
+				636FDA6D17B678CA006BBAAD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				636FDA7D17B678CA006BBAAD /* PBXTargetDependency */,
+			);
+			name = "PGN Reader Tests";
+			productName = "PGN Reader Tests";
+			productReference = 636FDA6F17B678CA006BBAAD /* PGN Reader Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -94,6 +169,11 @@
 			attributes = {
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = 64cloud;
+				TargetAttributes = {
+					636FDA6E17B678CA006BBAAD = {
+						TestTargetID = 636FDA5E17B678B9006BBAAD;
+					};
+				};
 			};
 			buildConfigurationList = 636FDA5A17B678B9006BBAAD /* Build configuration list for PBXProject "PGN Reader" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -108,9 +188,21 @@
 			projectRoot = "";
 			targets = (
 				636FDA5E17B678B9006BBAAD /* PGN Reader */,
+				636FDA6E17B678CA006BBAAD /* PGN Reader Tests */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		636FDA6D17B678CA006BBAAD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				636FDA7817B678CA006BBAAD /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		636FDA5B17B678B9006BBAAD /* Sources */ = {
@@ -121,7 +213,34 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		636FDA6B17B678CA006BBAAD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				636FDA8417B727B2006BBAAD /* PGNFile_Tests.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		636FDA7D17B678CA006BBAAD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 636FDA5E17B678B9006BBAAD /* PGN Reader */;
+			targetProxy = 636FDA7C17B678CA006BBAAD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		636FDA7617B678CA006BBAAD /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				636FDA7717B678CA006BBAAD /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		636FDA6617B678B9006BBAAD /* Debug */ = {
@@ -208,6 +327,40 @@
 			};
 			name = Release;
 		};
+		636FDA7F17B678CA006BBAAD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PGN Reader Tests/PGN Reader Tests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "PGN Reader Tests/PGN Reader Tests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		636FDA8017B678CA006BBAAD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PGN Reader Tests/PGN Reader Tests-Prefix.pch";
+				INFOPLIST_FILE = "PGN Reader Tests/PGN Reader Tests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -225,6 +378,14 @@
 			buildConfigurations = (
 				636FDA6917B678B9006BBAAD /* Debug */,
 				636FDA6A17B678B9006BBAAD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		636FDA7E17B678CA006BBAAD /* Build configuration list for PBXNativeTarget "PGN Reader Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				636FDA7F17B678CA006BBAAD /* Debug */,
+				636FDA8017B678CA006BBAAD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};

@@ -28,6 +28,16 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "636FDA6E17B678CA006BBAAD"
+               BuildableName = "PGN Reader Tests.xctest"
+               BlueprintName = "PGN Reader Tests"
+               ReferencedContainer = "container:PGN Reader.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
