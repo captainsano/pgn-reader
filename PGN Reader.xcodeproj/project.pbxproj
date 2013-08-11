@@ -12,6 +12,11 @@
 		636FDA7217B678CA006BBAAD /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 636FDA7117B678CA006BBAAD /* XCTest.framework */; };
 		636FDA7817B678CA006BBAAD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 636FDA7617B678CA006BBAAD /* InfoPlist.strings */; };
 		636FDA8417B727B2006BBAAD /* PGNFile_Tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 636FDA8317B727B2006BBAAD /* PGNFile_Tests.mm */; };
+		636FDA8717B751B8006BBAAD /* empty_file.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 636FDA8617B751B8006BBAAD /* empty_file.pgn */; };
+		636FDA8A17B751F2006BBAAD /* test_file_1.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 636FDA8917B751F2006BBAAD /* test_file_1.pgn */; };
+		636FDA8C17B75235006BBAAD /* premature_eof.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 636FDA8B17B75235006BBAAD /* premature_eof.pgn */; };
+		636FDA8E17B752C6006BBAAD /* all_term_markers.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 636FDA8D17B752C6006BBAAD /* all_term_markers.pgn */; };
+		636FDA9017B7580A006BBAAD /* game_termination_inside_comment.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 636FDA8F17B7580A006BBAAD /* game_termination_inside_comment.pgn */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +52,12 @@
 		636FDA7717B678CA006BBAAD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		636FDA7B17B678CA006BBAAD /* PGN Reader Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PGN Reader Tests-Prefix.pch"; sourceTree = "<group>"; };
 		636FDA8317B727B2006BBAAD /* PGNFile_Tests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PGNFile_Tests.mm; sourceTree = "<group>"; };
+		636FDA8517B72960006BBAAD /* CPPTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPPTest.h; sourceTree = "<group>"; };
+		636FDA8617B751B8006BBAAD /* empty_file.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = empty_file.pgn; sourceTree = "<group>"; };
+		636FDA8917B751F2006BBAAD /* test_file_1.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test_file_1.pgn; sourceTree = "<group>"; };
+		636FDA8B17B75235006BBAAD /* premature_eof.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = premature_eof.pgn; sourceTree = "<group>"; };
+		636FDA8D17B752C6006BBAAD /* all_term_markers.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = all_term_markers.pgn; sourceTree = "<group>"; };
+		636FDA8F17B7580A006BBAAD /* game_termination_inside_comment.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = game_termination_inside_comment.pgn; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +118,8 @@
 		636FDA7317B678CA006BBAAD /* PGN Reader Tests */ = {
 			isa = PBXGroup;
 			children = (
+				636FDA8817B751C5006BBAAD /* PGN Test Files */,
+				636FDA8517B72960006BBAAD /* CPPTest.h */,
 				636FDA7417B678CA006BBAAD /* Supporting Files */,
 				636FDA8317B727B2006BBAAD /* PGNFile_Tests.mm */,
 			);
@@ -121,6 +134,18 @@
 				636FDA7B17B678CA006BBAAD /* PGN Reader Tests-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		636FDA8817B751C5006BBAAD /* PGN Test Files */ = {
+			isa = PBXGroup;
+			children = (
+				636FDA8617B751B8006BBAAD /* empty_file.pgn */,
+				636FDA8917B751F2006BBAAD /* test_file_1.pgn */,
+				636FDA8B17B75235006BBAAD /* premature_eof.pgn */,
+				636FDA8D17B752C6006BBAAD /* all_term_markers.pgn */,
+				636FDA8F17B7580A006BBAAD /* game_termination_inside_comment.pgn */,
+			);
+			name = "PGN Test Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,6 +224,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				636FDA7817B678CA006BBAAD /* InfoPlist.strings in Resources */,
+				636FDA8A17B751F2006BBAAD /* test_file_1.pgn in Resources */,
+				636FDA9017B7580A006BBAAD /* game_termination_inside_comment.pgn in Resources */,
+				636FDA8C17B75235006BBAAD /* premature_eof.pgn in Resources */,
+				636FDA8E17B752C6006BBAAD /* all_term_markers.pgn in Resources */,
+				636FDA8717B751B8006BBAAD /* empty_file.pgn in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
