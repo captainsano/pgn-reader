@@ -17,6 +17,8 @@
 		636FDA8C17B75235006BBAAD /* premature_eof.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 636FDA8B17B75235006BBAAD /* premature_eof.pgn */; };
 		636FDA8E17B752C6006BBAAD /* all_term_markers.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 636FDA8D17B752C6006BBAAD /* all_term_markers.pgn */; };
 		636FDA9017B7580A006BBAAD /* game_termination_inside_comment.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 636FDA8F17B7580A006BBAAD /* game_termination_inside_comment.pgn */; };
+		636FDA9317B75902006BBAAD /* PGNFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 636FDA9117B75902006BBAAD /* PGNFile.cpp */; };
+		636FDA9417B75902006BBAAD /* PGNFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 636FDA9117B75902006BBAAD /* PGNFile.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +60,8 @@
 		636FDA8B17B75235006BBAAD /* premature_eof.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = premature_eof.pgn; sourceTree = "<group>"; };
 		636FDA8D17B752C6006BBAAD /* all_term_markers.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = all_term_markers.pgn; sourceTree = "<group>"; };
 		636FDA8F17B7580A006BBAAD /* game_termination_inside_comment.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = game_termination_inside_comment.pgn; sourceTree = "<group>"; };
+		636FDA9117B75902006BBAAD /* PGNFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PGNFile.cpp; sourceTree = "<group>"; };
+		636FDA9217B75902006BBAAD /* PGNFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGNFile.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,8 @@
 			children = (
 				636FDA6217B678B9006BBAAD /* main.cpp */,
 				636FDA6417B678B9006BBAAD /* PGN_Reader.1 */,
+				636FDA9117B75902006BBAAD /* PGNFile.cpp */,
+				636FDA9217B75902006BBAAD /* PGNFile.h */,
 			);
 			path = "PGN Reader";
 			sourceTree = "<group>";
@@ -240,6 +246,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				636FDA6317B678B9006BBAAD /* main.cpp in Sources */,
+				636FDA9317B75902006BBAAD /* PGNFile.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				636FDA8417B727B2006BBAAD /* PGNFile_Tests.mm in Sources */,
+				636FDA9417B75902006BBAAD /* PGNFile.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
