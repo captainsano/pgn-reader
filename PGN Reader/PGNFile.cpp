@@ -173,7 +173,8 @@ void PGNFile::setGamePointers() {
 						
 						// Push the current <begin, end> tuple
 						if (currentGameEnd != 0) {
-							gamePointers.push_back(std::make_tuple(currentGameBegin, currentGameEnd));
+							gamePointers.push_back(std::make_tuple(currentGameBegin  - static_cast<std::ios::pos_type>(1),
+																   currentGameEnd));
 							currentGameBegin = 0;
 							currentGameEnd = 0;
 							readingStatus = ReadingMeta;
@@ -204,4 +205,20 @@ void PGNFile::setGamePointers() {
 
 unsigned int PGNFile::getGameCount() {
 	return (unsigned int)gamePointers.size();
+}
+
+std::string PGNFile::getGame(unsigned int i) {
+	if (i > gamePointers.size()) {
+		throw std::out_of_range("The index i is not in range");
+	}
+	
+	std::string toReturn;
+	inputFileStream.clear();
+	inputFileStream.seekg(std::get<0>(gamePointers[i]));
+	
+	while (inputFileStream.good() && inputFileStream.tellg() != std::get<1>(gamePointers[i])) {
+		toReturn += inputFileStream.get();
+	}
+	
+	return toReturn;
 }

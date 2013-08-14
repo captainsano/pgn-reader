@@ -62,5 +62,10 @@
 	XCTAssertTrue(f.getGameCount() == 1, @"Game count should be equal to 1");
 }
 
+- (void)testRecognizesSampleDatabase {
+	PGNFile f(__TEST_FILE_PATH__ + "1.pgn");
+	XCTAssertTrue(f.getGameCount() == 5000, @"Game count should be equal to 1000");
+}
+
 
 @end

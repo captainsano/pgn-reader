@@ -7,12 +7,15 @@
 //
 
 #include <iostream>
+#include "PGNFile.h"
 
-int main(int argc, const char * argv[])
-{
+#define __TEST_FILE_PATH__ std::string("/Users/santhosbaala/Desktop/Projects/PGN Reader/PGN Reader Tests/")
 
-	// insert code here...
-	std::cout << "Hello, World!\n";
-    return 0;
+int main(int argc, const char * argv[]) {
+	PGNFile f(__TEST_FILE_PATH__ + "1.pgn");
+	
+	std::cout << f.getGame(5);
+	
+	std::cout << std::endl;
 }
 

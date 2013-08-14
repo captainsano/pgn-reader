@@ -26,6 +26,7 @@ public:
 	PGNFile(std::string fileName);
 	
 	unsigned int getGameCount();
+	std::string getGame(unsigned int i);
 };
 
 #endif /* defined(__PGN_Reader__PGNFile__) */

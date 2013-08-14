@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		636ED92817B96F3100A24276 /* 1.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 636ED92717B96F3100A24276 /* 1.pgn */; };
 		636FDA6317B678B9006BBAAD /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 636FDA6217B678B9006BBAAD /* main.cpp */; };
 		636FDA6517B678B9006BBAAD /* PGN_Reader.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 636FDA6417B678B9006BBAAD /* PGN_Reader.1 */; };
 		636FDA7217B678CA006BBAAD /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 636FDA7117B678CA006BBAAD /* XCTest.framework */; };
@@ -45,6 +46,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		636ED92717B96F3100A24276 /* 1.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 1.pgn; sourceTree = "<group>"; };
 		636FDA5F17B678B9006BBAAD /* PGN Reader */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "PGN Reader"; sourceTree = BUILT_PRODUCTS_DIR; };
 		636FDA6217B678B9006BBAAD /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		636FDA6417B678B9006BBAAD /* PGN_Reader.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = PGN_Reader.1; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 		636FDA8817B751C5006BBAAD /* PGN Test Files */ = {
 			isa = PBXGroup;
 			children = (
+				636ED92717B96F3100A24276 /* 1.pgn */,
 				636FDA8617B751B8006BBAAD /* empty_file.pgn */,
 				636FDA8917B751F2006BBAAD /* test_file_1.pgn */,
 				636FDA8B17B75235006BBAAD /* premature_eof.pgn */,
@@ -235,6 +238,7 @@
 				636FDA8C17B75235006BBAAD /* premature_eof.pgn in Resources */,
 				636FDA8E17B752C6006BBAAD /* all_term_markers.pgn in Resources */,
 				636FDA8717B751B8006BBAAD /* empty_file.pgn in Resources */,
+				636ED92817B96F3100A24276 /* 1.pgn in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,6 +422,7 @@
 				636FDA6A17B678B9006BBAAD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		636FDA7E17B678CA006BBAAD /* Build configuration list for PBXNativeTarget "PGN Reader Tests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +431,7 @@
 				636FDA8017B678CA006BBAAD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
