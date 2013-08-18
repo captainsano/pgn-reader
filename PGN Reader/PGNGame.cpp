@@ -230,9 +230,8 @@ void PGNGame::parseMetaSection() {
 		}
 		
 		if (currentState == MetaReadStateFinal) {
-			moveTextSectionBeginOffset = static_cast<unsigned int>(i - gameString.cbegin());
+			moveTextSectionBeginOffset = static_cast<unsigned int>(i - gameString.cbegin() + 1);
 			break;
-			
 		}
 	}
 	
@@ -251,9 +250,7 @@ void PGNGame::parseMoveTextSection() {
 	
 	std::string::const_iterator i = gameString.cbegin() + moveTextSectionBeginOffset;
 	
-	char ch = *i;
-	ch = ch;
-	ch = ch;
+	
 	
 	__moveTextParsed = true;
 }
