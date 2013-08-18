@@ -8,13 +8,62 @@
 
 #include "PGNGame.h"
 #include <cstdlib>
+#include <regex>
+
+/*-------- Methods for used for internal parsing, not to be exposed outside ---------*/
+enum TokenType {
+	TokenInvalid,
+	TokenWhiteSpace,
+	TokenDot,
+	TokenGameTermination,
+	TokenNAG,
+	TokenVariationBegin,
+	TokenVariationEnd,
+	// Move Tokens
+	TokenMoveNumber,
+	TokenMoveQueenSideCastling,
+	TokenMoveKingSideCastling,
+	TokenMoveNullMove,
+	TokenMovePawn,
+	TokenMovePawnCapture,
+	TokenMovePawnPromotion,
+	TokenMovePawnCapturePromotion,
+	TokenMovePiece,
+	TokenMovePieceFromFile,
+	TokenMovePieceFromRank,
+	TokenMovePieceFromSquare,
+};
+
+struct Token {
+	TokenType		type;
+	std::string		contents;
+	unsigned int	charactersConsumed;
+};
+
+Token nextToken(std::string::const_iterator begin, std::string::const_iterator end);
 
 PGNGame::PGNGame(const std::string & pgnString) {
 	if (pgnString.size() == 0) {
 		throw std::invalid_argument("The given pgnString is blank");
 	}
 	
-	gameString = pgnString;
+	gameString = std::regex_replace(pgnString, std::regex("(\r\n)|(\n\r)"), "\n");
+}
+
+unsigned int PGNGame::getHalfMoveCount() {
+	if (!this->__moveTextParsed) {
+		parseMoveTextSection();
+	}
+	
+	return SHRT_MAX;
+}
+
+std::string	PGNGame::getOrphanedComment() {
+	if (!this->__moveTextParsed) {
+		parseMoveTextSection();
+	}
+	
+	return this->orphanedComment;
 }
 
 void PGNGame::parseMetaSection() {
@@ -179,6 +228,12 @@ void PGNGame::parseMetaSection() {
 				break;
 			}
 		}
+		
+		if (currentState == MetaReadStateFinal) {
+			moveTextSectionBeginOffset = static_cast<unsigned int>(i - gameString.cbegin());
+			break;
+			
+		}
 	}
 	
 	if (currentState != MetaReadStateFinal) {
@@ -189,8 +244,18 @@ void PGNGame::parseMetaSection() {
 	}
 }
 
-void PGNGame::parseMoveTextSection(std::string::const_iterator i) {
+void PGNGame::parseMoveTextSection() {
+	if (!__metaParsed) {
+		parseMetaSection();
+	}
 	
+	std::string::const_iterator i = gameString.cbegin() + moveTextSectionBeginOffset;
+	
+	char ch = *i;
+	ch = ch;
+	ch = ch;
+	
+	__moveTextParsed = true;
 }
 
 std::string PGNGame::getMeta(std::string key) {
@@ -203,4 +268,15 @@ std::string PGNGame::getMeta(std::string key) {
 	}
 	
 	return meta[key];
+}
+
+/*---------------------- Internal parser implementation -----------------------*/
+
+Token nextToken(std::string::const_iterator begin, std::string::const_iterator end) {
+	// How this method works:
+	// get the longest possible string, obtain the matches based on decreasing length,
+	// create the token, add the match to its contents and return the token.
+	
+	
+	return {TokenInvalid, "", 0};
 }

@@ -16,16 +16,22 @@ class PGNGame {
 	bool __metaParsed		= false;
 	bool __moveTextParsed	= false;
 	
-	std::string gameString;
-	std::map<std::string, std::string> meta;
+	std::string		gameString;
+	unsigned int	moveTextSectionBeginOffset;
+	
+	// Data members to be populated by parsing gameString
+	std::map<std::string, std::string>	meta;
+	std::string							orphanedComment;
 	
 	void parseMetaSection();
-	void parseMoveTextSection(std::string::const_iterator);
+	void parseMoveTextSection();
 public:
 	PGNGame() = default;
 	PGNGame(const std::string & pgnString);
 	
-	std::string getMeta(std::string key);
+	std::string		getMeta(std::string key);
+	unsigned int	getHalfMoveCount();
+	std::string		getOrphanedComment();
 };
 
 #endif /* defined(__PGN_Reader__PGNGame__) */

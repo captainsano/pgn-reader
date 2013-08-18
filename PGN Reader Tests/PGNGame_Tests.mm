@@ -44,6 +44,18 @@
 	CPPAssertThrows(PGNGame(""), @"Should throw for blank string initialization");
 }
 
+- (void)testThrowsExceptionForInvalidMetaKey {
+	std::ifstream file(__TEST_FILE_PATH__ + "test_file_1.pgn");
+	std::string inputString;
+	while (file.good()) {
+		inputString += file.get();
+	}
+	
+	PGNGame g(inputString);
+	
+	CPPAssertThrows(g.getMeta("invalid_key"), @"Should throw for invalid meta key");
+}
+
 - (void)testMetaDataMatch1 {
 	std::ifstream file(__TEST_FILE_PATH__ + "test_file_1.pgn");
 	std::string inputString;
@@ -62,16 +74,72 @@
 	XCTAssertTrue(g.getMeta("Result") == "1-0",	@"Result should match");
 }
 
-- (void)testThrowsExceptionForInvalidMetaKey {
+- (void)testAcceptsCRLFEndings {
+	std::ifstream file(__TEST_FILE_PATH__ + "test_file_2_CRLF.pgn");
+	std::string inputString;
+	while (file.good()) {
+		inputString += file.get();
+	}
+	
+	try {
+		PGNGame g(inputString);
+		XCTAssertTrue(g.getMeta("Event") == "USA-ch m", @"Event should match");
+		XCTAssertTrue(g.getMeta("Site") == "USA", @"Site should match");
+		XCTAssertTrue(g.getMeta("Date") == "1909.??.??", @"Date should match");
+		XCTAssertTrue(g.getMeta("Round") == "5", @"Round should match");
+		XCTAssertTrue(g.getMeta("White") == "Showalter, Jackson Whipps", @"White should match");
+		XCTAssertTrue(g.getMeta("Black") == "Marshall, Frank James", @"Black should match");
+		XCTAssertTrue(g.getMeta("Result") == "1-0",	@"Result should match");
+	} catch (std::exception & e) {
+		XCTFail(@"Throws while accessing the meta keys. Should handle CRLF line endings");
+	}
+}
+
+- (void)testAcceptsGameWithoutMoves {
+	std::ifstream file(__TEST_FILE_PATH__ + "no_moves.pgn");
+	std::string inputString;
+	while (file.good()) {
+		inputString += file.get();
+	}
+	
+	try {
+		PGNGame g(inputString);
+		XCTAssertTrue(g.getHalfMoveCount() == 0, @"Move count should be equal 0");
+	} catch (std::exception & e) {
+		XCTFail(@"Move count should be equal to 0");
+	}
+}
+
+- (void)testReturnsOrphanedComment {
+	std::ifstream file(__TEST_FILE_PATH__ + "orphaned_comment.pgn");
+	std::string inputString;
+	while (file.good()) {
+		inputString += file.get();
+	}
+	
+	try {
+		PGNGame g(inputString);
+		XCTAssertTrue(g.getHalfMoveCount() == 0, @"Move count should be equal 0");
+		XCTAssertTrue(g.getOrphanedComment() == "This is an orphaned comment!", @"Should contain an orphaned comment");
+	} catch (std::exception & e) {
+		XCTFail(@"Move count should be equal to 0 and an orphaned comment should exist");
+	}
+}
+
+- (void)testReturnsCorrectHalfMoveCount {
 	std::ifstream file(__TEST_FILE_PATH__ + "test_file_1.pgn");
 	std::string inputString;
 	while (file.good()) {
 		inputString += file.get();
 	}
 	
-	PGNGame g(inputString);
-	
-	CPPAssertThrows(g.getMeta("invalid_key"), @"Should throw for invalid meta key");
+	try {
+		PGNGame g(inputString);
+		XCTAssertTrue(g.getHalfMoveCount() == 67, @"Move count should match");
+	} catch (std::exception & e) {
+		XCTFail(@"Half move count should match the game");
+	}
 }
+
 
 @end
