@@ -688,6 +688,7 @@ Token nextToken(std::string::const_iterator begin, std::string::const_iterator e
 				
 				toReturn.contents += *i;
 				toReturn.charactersConsumed++;
+				i++;
 			}
 			break;
 		}

@@ -95,6 +95,8 @@
 	}
 }
 
+#pragma error Do not run the test cases related to moves without passing all nextToken tests.
+/*
 - (void)testAcceptsGameWithoutMoves {
 	std::ifstream file(__TEST_FILE_PATH__ + "no_moves.pgn");
 	std::string inputString;
@@ -140,6 +142,6 @@
 		XCTFail(@"Half move count should match the game");
 	}
 }
-
+*/
 
 @end
