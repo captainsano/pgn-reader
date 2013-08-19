@@ -600,6 +600,7 @@ Token nextToken(std::string::const_iterator begin, std::string::const_iterator e
 				
 				toReturn.contents += *i;
 				toReturn.charactersConsumed++;
+				i++;
 			}
 			
 			break;
@@ -705,7 +706,7 @@ Token nextToken(std::string::const_iterator begin, std::string::const_iterator e
 			toReturn.type = TokenNAG;
 			i++;
 			toReturn.charactersConsumed++;	// For '$'
-			if (i+1 == end) {
+			if (i == end) {
 				throw std::invalid_argument("NAG token incomplete");
 			}
 			
@@ -716,6 +717,7 @@ Token nextToken(std::string::const_iterator begin, std::string::const_iterator e
 				
 				toReturn.contents += *i;
 				toReturn.charactersConsumed++;
+				i++;
 			}
 			
 			break;
@@ -786,27 +788,28 @@ Token nextToken(std::string::const_iterator begin, std::string::const_iterator e
 		case 'O': {
 			toReturn.type = TokenGenericMove;
 			
-			// Try to extract next 5 characters, including first 'O'
+			// Extract the next 5 characters, including first 'O'
 			while (i != end && toReturn.charactersConsumed <= 5) {
 				toReturn.contents += *i;
 				toReturn.charactersConsumed++;
 				i++;
-				
-				if (toReturn.charactersConsumed == 4 && toReturn.contents[3] != '-') {
-					toReturn.contents.erase(i-1);
-					break;
-				}
 			}
 			
-			if (toReturn.contents.length() == 5 && toReturn.contents == "O-O-O") {
+			if (std::regex_search(toReturn.contents, std::regex("O-O-O"))) {
 				toReturn.subType = TokenSubTypeMoveQueenSideCastling;
+				toReturn.contents = "O-O-O";
 				toReturn.charactersConsumed = 5;
+				
+				break;	// Done
 			}
 			
 			// At this point the token sub type should have been set, otherwise check for short castling.
-			if (toReturn.contents.length() == 3 && toReturn.contents == "O-O") {
+			if (std::regex_search(toReturn.contents, std::regex("O-O"))) {
 				toReturn.subType = TokenSubTypeMoveKingSideCastling;
+				toReturn.contents = "O-O";
 				toReturn.charactersConsumed = 3;
+				
+				break;	// Done
 			}
 			
 			if (toReturn.subType == TokenSubTypeNone) {
@@ -829,7 +832,7 @@ Token nextToken(std::string::const_iterator begin, std::string::const_iterator e
 			std::smatch matchedString;
 			
 			// Match pawn promotion with capture. (Eg: bxa8=Q or ba8Q)
-			if (std::regex_match(toReturn.contents, matchedString, std::regex("^[a-h]x?[a-h][18]=?[QRNB]"))) {
+			if (std::regex_search(toReturn.contents, matchedString, std::regex("^[a-h]x?[a-h][18]=?[QRNB]"))) {
 				toReturn.subType = TokenSubTypeMovePawnCapturePromotion;
 				toReturn.contents = matchedString[0];
 				toReturn.charactersConsumed = 6;
@@ -853,7 +856,7 @@ Token nextToken(std::string::const_iterator begin, std::string::const_iterator e
 			}
 			
 			// Match pawn promotion. (Eg: a8Q or b8=Q)
-			if (std::regex_match(toReturn.contents, matchedString, std::regex("^[a-h][18]=?[QRNB]"))) {
+			if (std::regex_search(toReturn.contents, matchedString, std::regex("^[a-h][18]=?[QRNB]"))) {
 				toReturn.subType = TokenSubTypeMovePawnPromotion;
 				toReturn.contents = matchedString[0];
 				toReturn.charactersConsumed = 4;
@@ -869,7 +872,7 @@ Token nextToken(std::string::const_iterator begin, std::string::const_iterator e
 			}
 			
 			// Match pawn capture (Eg: axb4 or ab4)
-			if (std::regex_match(toReturn.contents, matchedString, std::regex("^[a-h]x?[a-h][2-7]"))) {
+			if (std::regex_search(toReturn.contents, matchedString, std::regex("^[a-h]x?[a-h][2-7]"))) {
 				toReturn.subType = TokenSubTypeMovePawnCapture;
 				toReturn.contents = matchedString[0];
 				toReturn.charactersConsumed = 4;
@@ -885,7 +888,7 @@ Token nextToken(std::string::const_iterator begin, std::string::const_iterator e
 			}
 			
 			// Match pawn normal move (Eg: e4 e5)
-			if (std::regex_match(toReturn.contents, matchedString, std::regex("^[a-h][2-7]"))) {
+			if (std::regex_search(toReturn.contents, matchedString, std::regex("^[a-h][2-7]"))) {
 				toReturn.subType = TokenSubTypeMovePawn;
 				toReturn.contents = matchedString[0];
 				toReturn.charactersConsumed = 2;
@@ -914,7 +917,7 @@ Token nextToken(std::string::const_iterator begin, std::string::const_iterator e
 			std::smatch matchedString;
 			
 			// Match pawn promotion with capture. (Eg: bxa8=Q or ba8Q)
-			if (std::regex_match(toReturn.contents, matchedString, std::regex("^Kx?[a-h][1-8]"))) {
+			if (std::regex_search(toReturn.contents, matchedString, std::regex("^Kx?[a-h][1-8]"))) {
 				toReturn.subType = TokenSubTypeMovePiece;
 				toReturn.contents = matchedString[0];
 				toReturn.charactersConsumed = 4;
@@ -948,7 +951,7 @@ Token nextToken(std::string::const_iterator begin, std::string::const_iterator e
 			std::smatch matchedString;
 			
 			// Match move with fromSquare given. (Eg: Nb3xa5 or Nb3a5)
-			if (std::regex_match(toReturn.contents, matchedString, std::regex("^[QRBN][a-h][1-8]x?[a-h][1-8]"))) {
+			if (std::regex_search(toReturn.contents, matchedString, std::regex("^[QRBN][a-h][1-8]x?[a-h][1-8]"))) {
 				toReturn.subType = TokenSubTypeMovePieceFromSquare;
 				toReturn.contents = matchedString[0];
 				toReturn.charactersConsumed = 6;
@@ -964,7 +967,7 @@ Token nextToken(std::string::const_iterator begin, std::string::const_iterator e
 			}
 			
 			// Match move with from file given. (Eg: Nbxa5 or Nba5)
-			if (std::regex_match(toReturn.contents, matchedString, std::regex("^[QRBN][a-h]x?[a-h][1-8]"))) {
+			if (std::regex_search(toReturn.contents, matchedString, std::regex("^[QRBN][a-h]x?[a-h][1-8]"))) {
 				toReturn.subType = TokenSubTypeMovePieceFromFile;
 				toReturn.contents = matchedString[0];
 				toReturn.charactersConsumed = 5;
@@ -980,7 +983,7 @@ Token nextToken(std::string::const_iterator begin, std::string::const_iterator e
 			}
 			
 			// Match move with from rank given. (Eg: N3xa5 or N3a5)
-			if (std::regex_match(toReturn.contents, matchedString, std::regex("^[QRBN][1-8]x?[a-h][1-8]"))) {
+			if (std::regex_search(toReturn.contents, matchedString, std::regex("^[QRBN][1-8]x?[a-h][1-8]"))) {
 				toReturn.subType = TokenSubTypeMovePieceFromRank;
 				toReturn.contents = matchedString[0];
 				toReturn.charactersConsumed = 5;
@@ -996,7 +999,7 @@ Token nextToken(std::string::const_iterator begin, std::string::const_iterator e
 			}
 			
 			// Match normal move. (Eg: Nxa5 or Na5)
-			if (std::regex_match(toReturn.contents, matchedString, std::regex("^[QRBN]x?[a-h][1-8]"))) {
+			if (std::regex_search(toReturn.contents, matchedString, std::regex("^[QRBN]x?[a-h][1-8]"))) {
 				toReturn.subType = TokenSubTypeMovePiece;
 				toReturn.contents = matchedString[0];
 				toReturn.charactersConsumed = 4;
