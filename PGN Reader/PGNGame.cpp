@@ -905,10 +905,10 @@ Token nextToken(std::string::const_iterator begin, std::string::const_iterator e
 		}
 			
 		case 'K': {
-			// Extract next 4 characters
+			// Extract next 6 characters
 			toReturn.type = TokenGenericMove;
 			
-			while (i != end && toReturn.charactersConsumed <= 4) {
+			while (i != end && toReturn.charactersConsumed <= 6) {
 				toReturn.contents += *i;
 				toReturn.charactersConsumed++;
 				i++;
@@ -916,7 +916,12 @@ Token nextToken(std::string::const_iterator begin, std::string::const_iterator e
 			
 			std::smatch matchedString;
 			
-			// Match pawn promotion with capture. (Eg: bxa8=Q or ba8Q)
+			// Try to match king move with square disambiguation so as to declare the token invalid
+			if (std::regex_search(toReturn.contents, std::regex("^K[a-h][1-8]x?[a-h][1-8]"))) {
+				throw std::invalid_argument("King move token should not contain fromSquare");
+			}
+			
+			// Match normal king move
 			if (std::regex_search(toReturn.contents, matchedString, std::regex("^Kx?[a-h][1-8]"))) {
 				toReturn.subType = TokenSubTypeMovePiece;
 				toReturn.contents = matchedString[0];
