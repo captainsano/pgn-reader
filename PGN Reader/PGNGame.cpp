@@ -644,6 +644,10 @@ void PGNGame::parseMoveTextSection() {
 		throw std::invalid_argument("Move text contains unrecognizable text");
 	}
 	
+	/*-------------------------- Legality Checking for a variation -----------------------------*/
+	// Should return legalVariation
+	// legalVariation(initialGameState, currentTempVariation);
+	
 	__moveTextParsed = true;
 }
 
@@ -1119,5 +1123,101 @@ Token nextToken(std::string::const_iterator begin, std::string::const_iterator e
 void fillTempMoveWithToken(TempMove & move, const Token & t) {
 	if (t.type != TokenGenericMove) {
 		throw std::invalid_argument("Supplied token should be a move");
+	}
+	
+	switch (t.subType) {
+		case TokenSubTypeMoveNullMove: {
+			// Do nothing
+			break;
+		}
+			
+		case TokenSubTypeMovePawn: {
+			move.pieceMoved = sfc::cfw::GenericPiecePawn;
+			move.toFile = static_cast<unsigned short>(t.contents[0] - 'a');
+			move.toRank = static_cast<unsigned short>(t.contents[1] - '1');
+			break;
+		}
+			
+		case TokenSubTypeMovePawnCapture: {
+			move.pieceMoved = sfc::cfw::GenericPiecePawn;
+			move.fromFile = static_cast<unsigned short>(t.contents[0] - 'a');
+			move.toFile = static_cast<unsigned short>(t.contents[1] - 'a');
+			move.toRank = static_cast<unsigned short>(t.contents[2] - '1');
+			break;
+		}
+			
+		case TokenSubTypeMovePawnPromotion: {
+			move.pieceMoved = sfc::cfw::GenericPiecePawn;
+			move.toFile = static_cast<unsigned short>(t.contents[0] - 'a');
+			move.toRank = static_cast<unsigned short>(t.contents[1] - '1');
+			move.promotedPiece = sfc::cfw::makePromotablePiece(t.contents[2]);
+			break;
+		}
+			
+		case TokenSubTypeMovePawnCapturePromotion: {
+			move.pieceMoved = sfc::cfw::GenericPiecePawn;
+			move.fromFile = static_cast<unsigned short>(t.contents[0] - 'a');
+			move.toFile = static_cast<unsigned short>(t.contents[1] - 'a');
+			move.toRank = static_cast<unsigned short>(t.contents[2] - '1');
+			move.promotedPiece = sfc::cfw::makePromotablePiece(t.contents[3]);
+			break;
+		}
+			
+		case TokenSubTypeMovePiece: {
+			move.pieceMoved = sfc::cfw::makeGenericPiece(t.contents[0]);
+			move.toFile = static_cast<unsigned short>(t.contents[1] - 'a');
+			move.toRank = static_cast<unsigned short>(t.contents[2] - '1');
+			break;
+		}
+			
+		case TokenSubTypeMovePieceFromFile: {
+			move.pieceMoved = sfc::cfw::makeGenericPiece(t.contents[0]);
+			move.fromFile = static_cast<unsigned short>(t.contents[1] - 'a');
+			move.toFile = static_cast<unsigned short>(t.contents[2] - 'a');
+			move.toRank = static_cast<unsigned short>(t.contents[3] - '1');
+			break;
+		}
+			
+		case TokenSubTypeMovePieceFromRank: {
+			move.pieceMoved = sfc::cfw::makeGenericPiece(t.contents[0]);
+			move.fromRank = static_cast<unsigned short>(t.contents[1] - '1');
+			move.toFile = static_cast<unsigned short>(t.contents[2] - 'a');
+			move.toRank = static_cast<unsigned short>(t.contents[3] - '1');
+			break;
+		}
+			
+		case TokenSubTypeMovePieceFromSquare: {
+			move.pieceMoved = sfc::cfw::makeGenericPiece(t.contents[0]);
+			move.fromFile = static_cast<unsigned short>(t.contents[1] - 'a');
+			move.fromRank = static_cast<unsigned short>(t.contents[2] - '1');
+			move.toFile = static_cast<unsigned short>(t.contents[3] - 'a');
+			move.toRank = static_cast<unsigned short>(t.contents[4] - '1');
+			break;
+		}
+			
+		// Castling for both white and black goes e1-h1 (O-O) or e1-a1 (O-O-O)
+		// The color is decided later
+		// No chess960 support for castling
+		case TokenSubTypeMoveKingSideCastling: {
+			move.pieceMoved = sfc::cfw::GenericPieceKing;
+			move.fromFile = 4;
+			move.fromRank = 0;
+			move.toFile = 7;
+			move.toRank = 0;
+			break;
+		}
+		
+		case TokenSubTypeMoveQueenSideCastling: {
+			move.pieceMoved = sfc::cfw::GenericPieceKing;
+			move.fromFile = 4;
+			move.fromRank = 0;
+			move.toFile = 0;
+			move.toRank = 0;
+			break;
+		}
+		
+		default:
+			throw std::invalid_argument("Token sub-type is not related to move");
+			break;
 	}
 }
