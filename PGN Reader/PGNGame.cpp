@@ -12,6 +12,8 @@
 #include <vector>
 #include <stack>
 
+#include "Piece.h"
+
 #pragma mark - Parser Data Structures and utility method declarations
 /*-------- Methods for used for internal parsing, not to be exposed outside ---------*/
 enum TokenType {
@@ -56,8 +58,10 @@ struct Token {
 Token nextToken(std::string::const_iterator begin, std::string::const_iterator end);
 
 // The information in temp move will be filled/validated by ChessFramework later
+struct TempVariation;
+
 struct TempMove {
-	Token moveToken;	// The token that is representing the move
+	sfc::cfw::GenericPiece pieceMoved;
 	
 	unsigned short fromFile = SHRT_MAX;
 	unsigned short fromRank = SHRT_MAX;
@@ -66,16 +70,24 @@ struct TempMove {
 	// All set to 0s indicate a NULL move
 	// SHRT_MAX indicates that the field has not yet been set.
 	
-	char promotedToPiece;	// 'Q', 'R', 'N', 'B'
+	sfc::cfw::PromotablePiece promotedPiece = sfc::cfw::PromotablePieceNone;
 	
-	std::string textAnnotationAfter;
-	std::string textAnnotationBefore;
+	std::string textAnnotation;
 	std::vector<unsigned int> NAGs;
-	std::vector<std::vector<TempMove>> variations { };
+	std::vector<std::shared_ptr<TempVariation>> variations;
 	// TODO Include commands withing annotation
 	
 	TempMove() = default;
 };
+
+struct TempVariation {
+	std::string firstComment;
+	std::vector<std::shared_ptr<TempMove>> moves;
+	
+	TempVariation() = default;
+};
+
+void fillTempMoveWithToken(TempMove & move, const Token & t);
 
 #pragma mark - Public method implementation
 
@@ -107,12 +119,12 @@ unsigned int PGNGame::getHalfMoveCount() {
 	return SHRT_MAX;
 }
 
-std::string	PGNGame::getOrphanedComment() {
+std::string	PGNGame::getFirstComment() {
 	if (!this->__moveTextParsed) {
 		parseMoveTextSection();
 	}
 	
-	return this->orphanedComment;
+	return this->firstComment;
 }
 
 void PGNGame::parseMetaSection() {
@@ -307,13 +319,12 @@ void PGNGame::parseMoveTextSection() {
 		MoveTextReadStateFinal,
 	} currentState = MoveTextReadStateInit;
 	
-	TempMove currentMove;
-	std::string currentAnnotation = "";
-	std::vector<TempMove> currentTempVariation;
+	std::shared_ptr<TempMove> prevMove, currentMove;
+	std::shared_ptr<TempVariation> currentTempVariation = std::make_shared<TempVariation>();
 	
 	// Variation stack to recurse across RAVs - Stack is empty while parsing main line
 	// current variation, move and annotation.
-	std::stack<std::tuple<std::vector<TempMove>, TempMove, std::string>> RAVStack;
+	std::stack<std::tuple<decltype(currentTempVariation), decltype(prevMove)>> RAVStack;
 		
 	for (auto i = gameString.cbegin() + moveTextSectionBeginOffset; i != gameString.cend(); ) {
 		Token t = nextToken(i, gameString.cend());
@@ -322,22 +333,35 @@ void PGNGame::parseMoveTextSection() {
 			case MoveTextReadStateInit: {
 				switch (t.type) {
 					case TokenWhiteSpace: {
-						
+						// Do nothing
 						break;
 					}
 					
 					case TokenTextAnnotation: {
-						
+						// The text annotation appearing here should be appended to first comment
+						if (currentTempVariation->firstComment.length() > 0) {
+							currentTempVariation->firstComment += " ";
+						}
+						currentTempVariation->firstComment += t.contents;
 						break;
 					}
 						
 					case TokenMoveNumber: {
 						currentState = MoveTextReadStateM1;
+						// Do nothing
 						break;
 					}
 					
 					case TokenGenericMove: {
 						currentState = MoveTextReadStateM2;
+						// Insert a tempMove into the current variation
+						currentMove = std::make_shared<TempMove>();
+						fillTempMoveWithToken(*currentMove, t);
+						currentTempVariation->moves.push_back(currentMove);
+						
+						// Reset the current move pointer to NULL
+						prevMove = currentMove;
+						currentMove = nullptr;
 						break;
 					}
 						
@@ -358,17 +382,25 @@ void PGNGame::parseMoveTextSection() {
 			case MoveTextReadStateM1: {
 				switch (t.type) {
 					case TokenWhiteSpace: {
-						
+						// Do Nothing
 						break;
 					}
 						
 					case TokenDot: {
-						
+						// Do Nothing
 						break;
 					}
 						
 					case TokenGenericMove: {
 						currentState = MoveTextReadStateM2;
+						// Insert a tempMove into the current variation
+						currentMove = std::make_shared<TempMove>();
+						fillTempMoveWithToken(*currentMove, t);
+						currentTempVariation->moves.push_back(currentMove);
+						
+						// Reset the current move pointer to NULL
+						prevMove = currentMove;
+						currentMove = nullptr;
 						break;
 					}
 						
@@ -384,17 +416,22 @@ void PGNGame::parseMoveTextSection() {
 			case MoveTextReadStateM2: {
 				switch (t.type) {
 					case TokenWhiteSpace: {
-						
+						// Do Nothing
 						break;
 					}
 											
 					case TokenTextAnnotation: {
-						
+						// Append annotation to the previous move
+						if (prevMove->textAnnotation.length() > 0) {
+							prevMove->textAnnotation += " ";
+						}
+						prevMove->textAnnotation += t.contents;
 						break;
 					}
 						
 					case TokenNAG: {
-						
+						// Append NAG to the previous move
+						prevMove->NAGs.push_back(std::atoi(t.contents.c_str()));
 						break;
 					}
 						
@@ -404,12 +441,27 @@ void PGNGame::parseMoveTextSection() {
 					}
 						
 					case TokenGenericMove: {
+						// Insert a tempMove into the current variation
+						currentMove = std::make_shared<TempMove>();
+						fillTempMoveWithToken(*currentMove, t);
+						currentTempVariation->moves.push_back(currentMove);
 						
+						// Reset the current move pointer to NULL
+						prevMove = currentMove;
+						currentMove = nullptr;
 						break;
 					}
 						
 					case TokenVariationBegin: {
 						currentState = MoveTextReadStateM3;
+						// Push the current variation to the stack and allocate a new variation
+						RAVStack.push(std::make_tuple(currentTempVariation, prevMove));
+						// Clear the current temp variation.
+						// Add the new temp variation to the previous move's variations
+						// Clear the previous move.
+						currentTempVariation = std::make_shared<TempVariation>();
+						prevMove->variations.push_back(currentTempVariation);
+						prevMove = nullptr;
 						break;
 					}
 						
@@ -430,12 +482,15 @@ void PGNGame::parseMoveTextSection() {
 			case MoveTextReadStateM3: {
 				switch (t.type) {
 					case TokenWhiteSpace: {
-						
+						// Do nothing
 						break;
 					}
 
 					case TokenTextAnnotation: {
-						
+						if (currentTempVariation->firstComment.length() > 0) {
+							currentTempVariation->firstComment += " ";
+						}
+						currentTempVariation->firstComment += t.contents;
 						break;
 					}
 						
@@ -446,6 +501,14 @@ void PGNGame::parseMoveTextSection() {
 						
 					case TokenGenericMove: {
 						currentState = MoveTextReadStateM5;
+						// Insert a tempMove into the current variation
+						currentMove = std::make_shared<TempMove>();
+						fillTempMoveWithToken(*currentMove, t);
+						currentTempVariation->moves.push_back(currentMove);
+						
+						// Reset the current move pointer to NULL
+						prevMove = currentMove;
+						currentMove = nullptr;
 						break;
 					}
 						
@@ -461,17 +524,25 @@ void PGNGame::parseMoveTextSection() {
 			case MoveTextReadStateM4: {
 				switch (t.type) {
 					case TokenWhiteSpace: {
-						
+						// Do nothing
 						break;
 					}
 						
 					case TokenDot: {
-						
+						// Do nothing
 						break;
 					}
 						
 					case TokenGenericMove: {
 						currentState = MoveTextReadStateM5;
+						// Insert a tempMove into the current variation
+						currentMove = std::make_shared<TempMove>();
+						fillTempMoveWithToken(*currentMove, t);
+						currentTempVariation->moves.push_back(currentMove);
+						
+						// Reset the current move pointer to NULL
+						prevMove = currentMove;
+						currentMove = nullptr;
 						break;
 					}
 						
@@ -487,28 +558,46 @@ void PGNGame::parseMoveTextSection() {
 			case MoveTextReadStateM5: {
 				switch (t.type) {
 					case TokenWhiteSpace: {
-						
+						// Do nothing
 						break;
 					}
 						
 					case TokenTextAnnotation: {
-						
+						if (prevMove->textAnnotation.length() > 0) {
+							prevMove->textAnnotation += " ";
+						}
+						prevMove->textAnnotation += t.contents;
 						break;
 					}
 						
 					case TokenNAG: {
-						
+						prevMove->NAGs.push_back(std::atoi(t.contents.c_str()));
 						break;
 					}
 						
 					case TokenGenericMove: {
+						// Insert a tempMove into the current variation
+						currentMove = std::make_shared<TempMove>();
+						fillTempMoveWithToken(*currentMove, t);
+						currentTempVariation->moves.push_back(currentMove);
 						
+						// Reset the current move pointer to NULL
+						prevMove = currentMove;
+						currentMove = nullptr;
+
 						break;
 					}
 						
 					case TokenVariationBegin: {
 						currentState = MoveTextReadStateM3;
-						
+						// Push the current variation to the stack and allocate a new variation
+						RAVStack.push(std::make_tuple(currentTempVariation, prevMove));
+						// Clear the current temp variation.
+						// Add the new temp variation to the previous move's variations
+						// Clear the previous move.
+						currentTempVariation = std::make_shared<TempVariation>();
+						prevMove->variations.push_back(currentTempVariation);
+						prevMove = nullptr;
 						break;
 					}
 						
@@ -520,6 +609,13 @@ void PGNGame::parseMoveTextSection() {
 						} else {
 							currentState = MoveTextReadStateM3;
 						}
+						
+						// Restore the currentTemp and previous move variables from stack
+						std::tuple<decltype(currentTempVariation), decltype(prevMove)> toRestore = RAVStack.top();
+						currentTempVariation = std::get<0>(toRestore);
+						prevMove = std::get<1>(toRestore);
+						// Remove the top element from the stack
+						RAVStack.pop();
 						break;
 					}
 						
@@ -538,10 +634,6 @@ void PGNGame::parseMoveTextSection() {
 		}
 		
 		if (currentState == MoveTextReadStateFinal) {
-			// Set the current annotation to the last move if any.
-			if (currentAnnotation.length() > 0) {
-				this->orphanedComment = currentAnnotation;
-			}
 			break;
 		}
 		
@@ -552,12 +644,10 @@ void PGNGame::parseMoveTextSection() {
 		throw std::invalid_argument("Move text contains unrecognizable text");
 	}
 	
-	
 	__moveTextParsed = true;
 }
 
 /*---------------------- Internal parser implementation -----------------------*/
-
 Token nextToken(std::string::const_iterator begin, std::string::const_iterator end) {
 	if (begin == end) {
 		return Token();
@@ -1024,4 +1114,10 @@ Token nextToken(std::string::const_iterator begin, std::string::const_iterator e
 	}
 	
 	return toReturn;
+}
+
+void fillTempMoveWithToken(TempMove & move, const Token & t) {
+	if (t.type != TokenGenericMove) {
+		throw std::invalid_argument("Supplied token should be a move");
+	}
 }

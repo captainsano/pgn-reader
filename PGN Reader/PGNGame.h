@@ -21,7 +21,7 @@ class PGNGame {
 	
 	// Data members to be populated by parsing gameString
 	std::map<std::string, std::string>	meta;
-	std::string							orphanedComment;
+	std::string							firstComment;
 	
 	void parseMetaSection();
 	void parseMoveTextSection();
@@ -31,7 +31,7 @@ public:
 	
 	std::string		getMeta(std::string key);
 	unsigned int	getHalfMoveCount();
-	std::string		getOrphanedComment();
+	std::string		getFirstComment();
 };
 
 #endif /* defined(__PGN_Reader__PGNGame__) */

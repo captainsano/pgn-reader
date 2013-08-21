@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		6309846417C28138006F69E3 /* PGNGame_nextToken_Tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6309846317C28137006F69E3 /* PGNGame_nextToken_Tests.mm */; };
+		635B407017C485A200D6BAE0 /* libChessFrameworkLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 635B406F17C4859600D6BAE0 /* libChessFrameworkLibrary.a */; };
+		635B407117C485C600D6BAE0 /* libChessFrameworkLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 635B406F17C4859600D6BAE0 /* libChessFrameworkLibrary.a */; };
 		636ED92817B96F3100A24276 /* 1.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 636ED92717B96F3100A24276 /* 1.pgn */; };
 		636FDA6317B678B9006BBAAD /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 636FDA6217B678B9006BBAAD /* main.cpp */; };
 		636FDA6517B678B9006BBAAD /* PGN_Reader.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 636FDA6417B678B9006BBAAD /* PGN_Reader.1 */; };
@@ -30,6 +32,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		635B406A17C4859600D6BAE0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 635B406417C4859600D6BAE0 /* ChessFramework.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 63791944179A6784000C98E2;
+			remoteInfo = ChessFramework;
+		};
+		635B406C17C4859600D6BAE0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 635B406417C4859600D6BAE0 /* ChessFramework.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EDD926DE179DB4BA00225C0A;
+			remoteInfo = "ChessFramework Tests";
+		};
+		635B406E17C4859600D6BAE0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 635B406417C4859600D6BAE0 /* ChessFramework.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 635B405817C484DA00D6BAE0;
+			remoteInfo = ChessFrameworkLibrary;
+		};
 		636FDA7C17B678CA006BBAAD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 636FDA5717B678B9006BBAAD /* Project object */;
@@ -54,6 +77,7 @@
 
 /* Begin PBXFileReference section */
 		6309846317C28137006F69E3 /* PGNGame_nextToken_Tests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PGNGame_nextToken_Tests.mm; sourceTree = "<group>"; };
+		635B406417C4859600D6BAE0 /* ChessFramework.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ChessFramework.xcodeproj; path = ../ChessFramework/ChessFramework/ChessFramework.xcodeproj; sourceTree = "<group>"; };
 		636ED92717B96F3100A24276 /* 1.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 1.pgn; sourceTree = "<group>"; };
 		636FDA5F17B678B9006BBAAD /* PGN Reader */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "PGN Reader"; sourceTree = BUILT_PRODUCTS_DIR; };
 		636FDA6217B678B9006BBAAD /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
@@ -85,6 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				635B407117C485C600D6BAE0 /* libChessFrameworkLibrary.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +117,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				635B407017C485A200D6BAE0 /* libChessFrameworkLibrary.a in Frameworks */,
 				636FDA7217B678CA006BBAAD /* XCTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -99,9 +125,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		635B406517C4859600D6BAE0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				635B406B17C4859600D6BAE0 /* ChessFramework */,
+				635B406D17C4859600D6BAE0 /* ChessFramework Tests.xctest */,
+				635B406F17C4859600D6BAE0 /* libChessFrameworkLibrary.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		636FDA5617B678B9006BBAAD = {
 			isa = PBXGroup;
 			children = (
+				635B406417C4859600D6BAE0 /* ChessFramework.xcodeproj */,
 				636FDA6117B678B9006BBAAD /* PGN Reader */,
 				636FDA7317B678CA006BBAAD /* PGN Reader Tests */,
 				636FDA7017B678CA006BBAAD /* Frameworks */,
@@ -240,6 +277,12 @@
 			mainGroup = 636FDA5617B678B9006BBAAD;
 			productRefGroup = 636FDA6017B678B9006BBAAD /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 635B406517C4859600D6BAE0 /* Products */;
+					ProjectRef = 635B406417C4859600D6BAE0 /* ChessFramework.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				636FDA5E17B678B9006BBAAD /* PGN Reader */,
@@ -247,6 +290,30 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		635B406B17C4859600D6BAE0 /* ChessFramework */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = ChessFramework;
+			remoteRef = 635B406A17C4859600D6BAE0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		635B406D17C4859600D6BAE0 /* ChessFramework Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "ChessFramework Tests.xctest";
+			remoteRef = 635B406C17C4859600D6BAE0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		635B406F17C4859600D6BAE0 /* libChessFrameworkLibrary.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libChessFrameworkLibrary.a;
+			remoteRef = 635B406E17C4859600D6BAE0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		636FDA6D17B678CA006BBAAD /* Resources */ = {
@@ -386,6 +453,7 @@
 		636FDA6917B678B9006BBAAD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = /Users/santhosbaala/Desktop/Projects/ChessFramework/ChessFramework/ChessFramework;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -393,6 +461,7 @@
 		636FDA6A17B678B9006BBAAD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = /Users/santhosbaala/Desktop/Projects/ChessFramework/ChessFramework/ChessFramework;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -410,6 +479,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				HEADER_SEARCH_PATHS = /Users/santhosbaala/Desktop/Projects/ChessFramework/ChessFramework/ChessFramework;
 				INFOPLIST_FILE = "PGN Reader Tests/PGN Reader Tests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;
@@ -425,6 +495,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PGN Reader Tests/PGN Reader Tests-Prefix.pch";
+				HEADER_SEARCH_PATHS = /Users/santhosbaala/Desktop/Projects/ChessFramework/ChessFramework/ChessFramework;
 				INFOPLIST_FILE = "PGN Reader Tests/PGN Reader Tests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;

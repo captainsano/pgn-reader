@@ -96,7 +96,7 @@
 }
 
 #pragma error Do not run the test cases related to moves without passing all nextToken tests.
-/*
+
 - (void)testAcceptsGameWithoutMoves {
 	std::ifstream file(__TEST_FILE_PATH__ + "no_moves.pgn");
 	std::string inputString;
@@ -112,7 +112,7 @@
 	}
 }
 
-- (void)testReturnsOrphanedComment {
+- (void)testReturnsFirstComment {
 	std::ifstream file(__TEST_FILE_PATH__ + "orphaned_comment.pgn");
 	std::string inputString;
 	while (file.good()) {
@@ -122,7 +122,7 @@
 	try {
 		PGNGame g(inputString);
 		XCTAssertTrue(g.getHalfMoveCount() == 0, @"Move count should be equal 0");
-		XCTAssertTrue(g.getOrphanedComment() == "This is an orphaned comment!", @"Should contain an orphaned comment");
+		XCTAssertTrue(g.getFirstComment() == "This is an orphaned comment!", @"Should contain an orphaned comment");
 	} catch (std::exception & e) {
 		XCTFail(@"Move count should be equal to 0 and an orphaned comment should exist");
 	}
@@ -142,6 +142,5 @@
 		XCTFail(@"Half move count should match the game");
 	}
 }
-*/
 
 @end
