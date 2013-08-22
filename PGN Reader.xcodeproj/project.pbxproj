@@ -80,6 +80,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		63028D9E17C529BF008BC1DF /* PGNVariationFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PGNVariationFactory.h; sourceTree = "<group>"; };
 		6309846317C28137006F69E3 /* PGNGame_nextToken_Tests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PGNGame_nextToken_Tests.mm; sourceTree = "<group>"; };
 		635B406417C4859600D6BAE0 /* ChessFramework.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ChessFramework.xcodeproj; path = ../ChessFramework/ChessFramework/ChessFramework.xcodeproj; sourceTree = "<group>"; };
 		636ED92717B96F3100A24276 /* 1.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 1.pgn; sourceTree = "<group>"; };
@@ -176,6 +177,7 @@
 				63AEF8C517C4DDDC000983E7 /* PGNMove.h */,
 				63AEF8CB17C4E405000983E7 /* PGNVariation.cpp */,
 				63AEF8CC17C4E405000983E7 /* PGNVariation.h */,
+				63028D9E17C529BF008BC1DF /* PGNVariationFactory.h */,
 			);
 			path = "PGN Reader";
 			sourceTree = "<group>";

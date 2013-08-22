@@ -1133,6 +1133,7 @@ void fillTempMoveWithToken(TempMove & move, const Token & t) {
 			
 		case TokenSubTypeMovePawn: {
 			move.pieceMoved = sfc::cfw::GenericPiecePawn;
+			move.fromFile = static_cast<unsigned short>(t.contents[0] - 'a');
 			move.toFile = static_cast<unsigned short>(t.contents[0] - 'a');
 			move.toRank = static_cast<unsigned short>(t.contents[1] - '1');
 			break;
