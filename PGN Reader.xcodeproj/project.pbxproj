@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6309846417C28138006F69E3 /* PGNGame_nextToken_Tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6309846317C28137006F69E3 /* PGNGame_nextToken_Tests.mm */; };
+		6309846417C28138006F69E3 /* PGNTokenizer_Tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6309846317C28137006F69E3 /* PGNTokenizer_Tests.mm */; };
+		631573AB17C61E5700E66A6E /* PGNTokenizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 631573AA17C61E5700E66A6E /* PGNTokenizer.cpp */; };
+		631573AC17C61E5700E66A6E /* PGNTokenizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 631573AA17C61E5700E66A6E /* PGNTokenizer.cpp */; };
 		635B407017C485A200D6BAE0 /* libChessFrameworkLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 635B406F17C4859600D6BAE0 /* libChessFrameworkLibrary.a */; };
 		635B407117C485C600D6BAE0 /* libChessFrameworkLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 635B406F17C4859600D6BAE0 /* libChessFrameworkLibrary.a */; };
 		636ED92817B96F3100A24276 /* 1.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 636ED92717B96F3100A24276 /* 1.pgn */; };
@@ -81,7 +83,9 @@
 
 /* Begin PBXFileReference section */
 		63028D9E17C529BF008BC1DF /* PGNVariationFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PGNVariationFactory.h; sourceTree = "<group>"; };
-		6309846317C28137006F69E3 /* PGNGame_nextToken_Tests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PGNGame_nextToken_Tests.mm; sourceTree = "<group>"; };
+		6309846317C28137006F69E3 /* PGNTokenizer_Tests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PGNTokenizer_Tests.mm; sourceTree = "<group>"; };
+		631573A617C61D8700E66A6E /* PGNTokenizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PGNTokenizer.h; sourceTree = "<group>"; };
+		631573AA17C61E5700E66A6E /* PGNTokenizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PGNTokenizer.cpp; sourceTree = "<group>"; };
 		635B406417C4859600D6BAE0 /* ChessFramework.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ChessFramework.xcodeproj; path = ../ChessFramework/ChessFramework/ChessFramework.xcodeproj; sourceTree = "<group>"; };
 		636ED92717B96F3100A24276 /* 1.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 1.pgn; sourceTree = "<group>"; };
 		636FDA5F17B678B9006BBAAD /* PGN Reader */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "PGN Reader"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -178,6 +182,8 @@
 				63AEF8CB17C4E405000983E7 /* PGNVariation.cpp */,
 				63AEF8CC17C4E405000983E7 /* PGNVariation.h */,
 				63028D9E17C529BF008BC1DF /* PGNVariationFactory.h */,
+				631573AA17C61E5700E66A6E /* PGNTokenizer.cpp */,
+				631573A617C61D8700E66A6E /* PGNTokenizer.h */,
 			);
 			path = "PGN Reader";
 			sourceTree = "<group>";
@@ -198,7 +204,7 @@
 				636FDA7417B678CA006BBAAD /* Supporting Files */,
 				636FDA8317B727B2006BBAAD /* PGNFile_Tests.mm */,
 				63972FEF17BFB7C2004A323C /* PGNGame_Tests.mm */,
-				6309846317C28137006F69E3 /* PGNGame_nextToken_Tests.mm */,
+				6309846317C28137006F69E3 /* PGNTokenizer_Tests.mm */,
 			);
 			path = "PGN Reader Tests";
 			sourceTree = "<group>";
@@ -355,6 +361,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63AEF8C617C4DDDC000983E7 /* PGNMove.cpp in Sources */,
+				631573AB17C61E5700E66A6E /* PGNTokenizer.cpp in Sources */,
 				636FDA6317B678B9006BBAAD /* main.cpp in Sources */,
 				63AEF8CD17C4E405000983E7 /* PGNVariation.cpp in Sources */,
 				636FDA9317B75902006BBAAD /* PGNFile.cpp in Sources */,
@@ -366,13 +373,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6309846417C28138006F69E3 /* PGNGame_nextToken_Tests.mm in Sources */,
+				6309846417C28138006F69E3 /* PGNTokenizer_Tests.mm in Sources */,
 				636FDA8417B727B2006BBAAD /* PGNFile_Tests.mm in Sources */,
 				636FDA9417B75902006BBAAD /* PGNFile.cpp in Sources */,
 				63972FEE17BF893A004A323C /* PGNGame.cpp in Sources */,
 				63AEF8C717C4DDDC000983E7 /* PGNMove.cpp in Sources */,
 				63972FF017BFB7C2004A323C /* PGNGame_Tests.mm in Sources */,
 				63AEF8CE17C4E405000983E7 /* PGNVariation.cpp in Sources */,
+				631573AC17C61E5700E66A6E /* PGNTokenizer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

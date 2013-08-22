@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include "PGNFile.h"
+#include "PGNTokenizer.h"
 
 #define __TEST_FILE_PATH__ std::string("/Users/santhosbaala/Desktop/Projects/PGN Reader/PGN Reader Tests/")
 
@@ -23,48 +24,9 @@ int main(int argc, const char * argv[]) {
 
 */
 
-enum TokenType {
-	TokenInvalid,
-	TokenWhiteSpace,
-	TokenDot,
-	TokenGameTermination,
-	TokenNAG,
-	TokenTextAnnotation,
-	TokenVariationBegin,
-	TokenVariationEnd,
-	TokenMoveNumber,
-	// Move Tokens
-	TokenGenericMove,
-};
-
-enum TokenSubType {
-	TokenSubTypeNone,
-	// Move Sub-Types
-	TokenSubTypeMoveNullMove,
-	TokenSubTypeMovePawn,
-	TokenSubTypeMovePawnCapture,
-	TokenSubTypeMovePawnPromotion,
-	TokenSubTypeMovePawnCapturePromotion,
-	TokenSubTypeMovePiece,
-	TokenSubTypeMovePieceFromFile,
-	TokenSubTypeMovePieceFromRank,
-	TokenSubTypeMovePieceFromSquare,
-	TokenSubTypeMoveQueenSideCastling,
-	TokenSubTypeMoveKingSideCastling,
-};
-
-struct Token {
-	TokenType		type	= TokenInvalid;
-	TokenSubType	subType	= TokenSubTypeNone;			// Used only for moves
-	std::string		contents = "";
-	unsigned int	charactersConsumed = 0;
-	
-	Token() = default;
-};
-
-Token nextToken(std::string::const_iterator begin, std::string::const_iterator end);
-
 int main() {
+	using namespace PGNTokenizer;
+	
 	std::string myString =
 	"1. "
 	"Nf3 Nf6 2. c4 c5 3. Nc3 Nc6 4. d4 cxd4 5. Nxd4 g6 6. Nc2 d6 7. e4 {With "

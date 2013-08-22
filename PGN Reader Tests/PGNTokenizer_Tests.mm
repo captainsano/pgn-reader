@@ -1,5 +1,5 @@
 //
-//  PGNGame_nextToken_Tests.m
+//  PGNTokenizer_Tests.m
 //  PGN Reader
 //
 //  Created by Santhosbaala RS on 19/08/13.
@@ -9,60 +9,15 @@
 #import <XCTest/XCTest.h>
 #import "CPPTest.h"
 #import "PGNGame.h"
+#import "PGNTokenizer.h"
 
-/*
- * The below declarations and types are required for the test to run.
- * In the actual reader, these will be hidden in the .cpp file
- */
-#pragma mark - Parser Data Structures and utility method declarations
-/*-------- Methods for used for internal parsing, not to be exposed outside ---------*/
-enum TokenType {
-	TokenInvalid,
-	TokenWhiteSpace,
-	TokenDot,
-	TokenGameTermination,
-	TokenNAG,
-	TokenTextAnnotation,
-	TokenVariationBegin,
-	TokenVariationEnd,
-	TokenMoveNumber,
-	// Move Tokens
-	TokenGenericMove,
-};
-
-enum TokenSubType {
-	TokenSubTypeNone,
-	// Move Sub-Types
-	TokenSubTypeMoveNullMove,
-	TokenSubTypeMovePawn,
-	TokenSubTypeMovePawnCapture,
-	TokenSubTypeMovePawnPromotion,
-	TokenSubTypeMovePawnCapturePromotion,
-	TokenSubTypeMovePiece,
-	TokenSubTypeMovePieceFromFile,
-	TokenSubTypeMovePieceFromRank,
-	TokenSubTypeMovePieceFromSquare,
-	TokenSubTypeMoveQueenSideCastling,
-	TokenSubTypeMoveKingSideCastling,
-};
-
-struct Token {
-	TokenType		type	= TokenInvalid;
-	TokenSubType	subType	= TokenSubTypeNone;			// Used only for moves
-	std::string		contents = "";
-	unsigned int	charactersConsumed = 0;
-	
-	Token() = default;
-};
-
-Token nextToken(std::string::const_iterator begin, std::string::const_iterator end);
-/*----------------------------------------------------------------------------------*/
-
-@interface PGNGame_nextToken_Tests : XCTestCase
+@interface PGNTokenizer_Tests : XCTestCase
 
 @end
 
-@implementation PGNGame_nextToken_Tests
+@implementation PGNTokenizer_Tests
+
+using namespace PGNTokenizer;
 
 - (void)setUp {
     [super setUp];
