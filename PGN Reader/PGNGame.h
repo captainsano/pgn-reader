@@ -11,6 +11,7 @@
 
 #include <map>
 #include <string>
+#include "PGNVariation.h"
 
 class PGNGame {
 	bool __metaParsed		= false;
@@ -19,9 +20,10 @@ class PGNGame {
 	std::string		gameString;
 	unsigned int	moveTextSectionBeginOffset;
 	
+	PGNVariation	mainVariation;
+	
 	// Data members to be populated by parsing gameString
 	std::map<std::string, std::string>	meta;
-	std::string							firstComment;
 	
 	void parseMetaSection();
 	void parseMoveTextSection();
@@ -29,9 +31,12 @@ public:
 	PGNGame() = default;
 	PGNGame(const std::string & pgnString);
 	
-	std::string		getMeta(std::string key);
-	unsigned int	getHalfMoveCount();
-	std::string		getFirstComment();
+	std::string	getMeta(std::string key);
+	
+	std::string	getFirstComment();
+	auto getHalfMoveCount() -> decltype(mainVariation.size());
+	
+	/* TODO: Provide Iterators */
 };
 
 #endif /* defined(__PGN_Reader__PGNGame__) */

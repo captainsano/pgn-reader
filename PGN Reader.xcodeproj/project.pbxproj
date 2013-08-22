@@ -10,6 +10,8 @@
 		6309846417C28138006F69E3 /* PGNTokenizer_Tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6309846317C28137006F69E3 /* PGNTokenizer_Tests.mm */; };
 		631573AB17C61E5700E66A6E /* PGNTokenizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 631573AA17C61E5700E66A6E /* PGNTokenizer.cpp */; };
 		631573AC17C61E5700E66A6E /* PGNTokenizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 631573AA17C61E5700E66A6E /* PGNTokenizer.cpp */; };
+		631573AE17C6225000E66A6E /* PGNVariationFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 631573AD17C6225000E66A6E /* PGNVariationFactory.cpp */; };
+		631573AF17C6225000E66A6E /* PGNVariationFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 631573AD17C6225000E66A6E /* PGNVariationFactory.cpp */; };
 		635B407017C485A200D6BAE0 /* libChessFrameworkLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 635B406F17C4859600D6BAE0 /* libChessFrameworkLibrary.a */; };
 		635B407117C485C600D6BAE0 /* libChessFrameworkLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 635B406F17C4859600D6BAE0 /* libChessFrameworkLibrary.a */; };
 		636ED92817B96F3100A24276 /* 1.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 636ED92717B96F3100A24276 /* 1.pgn */; };
@@ -86,6 +88,8 @@
 		6309846317C28137006F69E3 /* PGNTokenizer_Tests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PGNTokenizer_Tests.mm; sourceTree = "<group>"; };
 		631573A617C61D8700E66A6E /* PGNTokenizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PGNTokenizer.h; sourceTree = "<group>"; };
 		631573AA17C61E5700E66A6E /* PGNTokenizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PGNTokenizer.cpp; sourceTree = "<group>"; };
+		631573AD17C6225000E66A6E /* PGNVariationFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PGNVariationFactory.cpp; sourceTree = "<group>"; };
+		631573B017C62F2B00E66A6E /* PGNException.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PGNException.h; sourceTree = "<group>"; };
 		635B406417C4859600D6BAE0 /* ChessFramework.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ChessFramework.xcodeproj; path = ../ChessFramework/ChessFramework/ChessFramework.xcodeproj; sourceTree = "<group>"; };
 		636ED92717B96F3100A24276 /* 1.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 1.pgn; sourceTree = "<group>"; };
 		636FDA5F17B678B9006BBAAD /* PGN Reader */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "PGN Reader"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -181,9 +185,11 @@
 				63AEF8C517C4DDDC000983E7 /* PGNMove.h */,
 				63AEF8CB17C4E405000983E7 /* PGNVariation.cpp */,
 				63AEF8CC17C4E405000983E7 /* PGNVariation.h */,
+				631573AD17C6225000E66A6E /* PGNVariationFactory.cpp */,
 				63028D9E17C529BF008BC1DF /* PGNVariationFactory.h */,
 				631573AA17C61E5700E66A6E /* PGNTokenizer.cpp */,
 				631573A617C61D8700E66A6E /* PGNTokenizer.h */,
+				631573B017C62F2B00E66A6E /* PGNException.h */,
 			);
 			path = "PGN Reader";
 			sourceTree = "<group>";
@@ -363,6 +369,7 @@
 				63AEF8C617C4DDDC000983E7 /* PGNMove.cpp in Sources */,
 				631573AB17C61E5700E66A6E /* PGNTokenizer.cpp in Sources */,
 				636FDA6317B678B9006BBAAD /* main.cpp in Sources */,
+				631573AE17C6225000E66A6E /* PGNVariationFactory.cpp in Sources */,
 				63AEF8CD17C4E405000983E7 /* PGNVariation.cpp in Sources */,
 				636FDA9317B75902006BBAAD /* PGNFile.cpp in Sources */,
 				63972FED17BF893A004A323C /* PGNGame.cpp in Sources */,
@@ -379,6 +386,7 @@
 				63972FEE17BF893A004A323C /* PGNGame.cpp in Sources */,
 				63AEF8C717C4DDDC000983E7 /* PGNMove.cpp in Sources */,
 				63972FF017BFB7C2004A323C /* PGNGame_Tests.mm in Sources */,
+				631573AF17C6225000E66A6E /* PGNVariationFactory.cpp in Sources */,
 				63AEF8CE17C4E405000983E7 /* PGNVariation.cpp in Sources */,
 				631573AC17C61E5700E66A6E /* PGNTokenizer.cpp in Sources */,
 			);

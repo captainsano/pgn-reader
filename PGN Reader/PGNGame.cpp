@@ -14,6 +14,8 @@
 
 #include "Piece.h"
 #include "PGNTokenizer.h"
+#include "PGNVariationFactory.h"
+#include "GameState.h"
 
 PGNGame::PGNGame(const std::string & pgnString) {
 	if (pgnString.size() == 0) {
@@ -21,6 +23,22 @@ PGNGame::PGNGame(const std::string & pgnString) {
 	}
 	
 	gameString = std::regex_replace(pgnString, std::regex("(\r\n)|(\n\r)"), "\n");
+}
+
+std::string	PGNGame::getFirstComment() {
+	if (!__moveTextParsed) {
+		parseMoveTextSection();
+	}
+	
+	return this->mainVariation.getFirstComment();
+}
+
+auto PGNGame::getHalfMoveCount() -> decltype(mainVariation.size()) {
+	if (!__moveTextParsed) {
+		parseMoveTextSection();
+	}
+	
+	return this->mainVariation.size();
 }
 
 std::string PGNGame::getMeta(std::string key) {
@@ -33,22 +51,6 @@ std::string PGNGame::getMeta(std::string key) {
 	}
 	
 	return meta[key];
-}
-
-unsigned int PGNGame::getHalfMoveCount() {
-	if (!this->__moveTextParsed) {
-		parseMoveTextSection();
-	}
-	
-	return SHRT_MAX;
-}
-
-std::string	PGNGame::getFirstComment() {
-	if (!this->__moveTextParsed) {
-		parseMoveTextSection();
-	}
-	
-	return this->firstComment;
 }
 
 void PGNGame::parseMetaSection() {
@@ -569,8 +571,15 @@ void PGNGame::parseMoveTextSection() {
 	}
 	
 	/*-------------------------- Legality Checking for a variation -----------------------------*/
-	// Should return legalVariation
-	// legalVariation(initialGameState, currentTempVariation);
+	std::shared_ptr<PGNVariation> variation = nullptr;
+	try {
+		variation = PGNVariationFactory::legalVariation(*currentTempVariation, sfc::cfw::GameState("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR",
+																								   sfc::cfw::ColorWhite,
+																								   "KQkq"));
+	} catch (std::exception & e) {
+		throw e;
+	}
 	
+	this->mainVariation = *variation;
 	__moveTextParsed = true;
 }

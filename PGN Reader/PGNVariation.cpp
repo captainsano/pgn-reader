@@ -7,4 +7,3 @@
 //
 
 #include "PGNVariation.h"
-#include "PGNMove.h"

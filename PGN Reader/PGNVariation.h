@@ -21,7 +21,8 @@ class PGNVariation {
 	
 public:
 	PGNVariation() = default;
-	PGNVariation(std::vector<std::shared_ptr<PGNMove>> aMoves, const std::string & firstComment = "");
+	PGNVariation(const std::string & aFirstComment) : firstComment(aFirstComment) { }
+	PGNVariation(std::vector<std::shared_ptr<PGNMove>> aMoves, const std::string & aFirstComment = "") : moves(aMoves) { }
 	
 	inline void addMove(std::shared_ptr<PGNMove> aMove) { this->moves.push_back(aMove); }
 	
@@ -29,6 +30,11 @@ public:
 		if (this->moves.size() > 0) return this->moves[0];
 		return nullptr;
 	}
+	
+	inline std::string getFirstComment() { return this->firstComment; }	
+	inline auto size() -> decltype(moves.size()) { return moves.size(); }
+	
+	/* TODO: provide iterators */
 };
 
 #endif /* defined(__PGN_Reader__PGNVariation__) */

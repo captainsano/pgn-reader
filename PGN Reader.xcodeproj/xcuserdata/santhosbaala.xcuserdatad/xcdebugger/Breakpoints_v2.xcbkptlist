@@ -2,4 +2,112 @@
 <Bucket
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PGN Reader/PGNGame.cpp"
+            timestampString = "398867176.961347"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "582"
+            endingLineNumber = "582"
+            landmarkName = "PGNGame::parseMoveTextSection()"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PGNGame::parseMoveTextSection()"
+                  moduleName = "PGN Reader"
+                  urlString = "file://localhost/Users/santhosbaala/Desktop/Projects/PGN%20Reader/PGN%20Reader/PGNGame.cpp"
+                  timestampString = "398866777.620246"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "586"
+                  endingLineNumber = "586"
+                  offsetFromSymbolStart = "31726">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PGNGame::parseMoveTextSection()"
+                  moduleName = "PGN Reader"
+                  urlString = "file://localhost/Users/santhosbaala/Desktop/Projects/PGN%20Reader/PGN%20Reader/PGNGame.cpp"
+                  timestampString = "398866777.620592"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "586"
+                  endingLineNumber = "586"
+                  offsetFromSymbolStart = "31758">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PGN Reader/PGNGame.cpp"
+            timestampString = "398866443.471983"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "572"
+            endingLineNumber = "572"
+            landmarkName = "PGNGame::parseMoveTextSection()"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PGNGame::parseMoveTextSection()"
+                  moduleName = "PGN Reader"
+                  urlString = "file://localhost/Users/santhosbaala/Desktop/Projects/PGN%20Reader/PGN%20Reader/PGNGame.cpp"
+                  timestampString = "398866777.620912"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "576"
+                  endingLineNumber = "576"
+                  offsetFromSymbolStart = "30416">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PGNGame::parseMoveTextSection()"
+                  moduleName = "PGN Reader"
+                  urlString = "file://localhost/Users/santhosbaala/Desktop/Projects/PGN%20Reader/PGN%20Reader/PGNGame.cpp"
+                  timestampString = "398866777.62121"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "576"
+                  endingLineNumber = "576"
+                  offsetFromSymbolStart = "30594">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PGNGame::parseMoveTextSection()"
+                  moduleName = "PGN Reader"
+                  urlString = "file://localhost/Users/santhosbaala/Desktop/Projects/PGN%20Reader/PGN%20Reader/PGNGame.cpp"
+                  timestampString = "398866777.621507"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "576"
+                  endingLineNumber = "576"
+                  offsetFromSymbolStart = "31162">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
