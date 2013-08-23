@@ -31,8 +31,6 @@ public:
 	
 	inline bool hasVariations() const { return !(this->variations.empty()); }
 	inline std::vector<PGNVariation> getVariations() const { return this->variations; }
-	
-	std::string getSANString() const;
 };
 
 #endif /* defined(__PGN_Reader__PGNMove__) */
