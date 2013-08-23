@@ -505,6 +505,11 @@ void PGNGame::parseMoveTextSection() {
 						break;
 					}
 						
+					case PGNTokenizer::TokenMoveNumber: {
+						currentState = MoveTextReadStateM4;
+						break;
+					}
+						
 					case PGNTokenizer::TokenGenericMove: {
 						// Insert a tempMove into the current variation
 						currentMove = std::make_shared<PGNTokenizer::TempMove>();

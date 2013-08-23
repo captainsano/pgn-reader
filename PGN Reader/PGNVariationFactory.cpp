@@ -80,7 +80,10 @@ std::shared_ptr<PGNVariation> PGNVariationFactory::legalVariation(const PGNToken
 		}
 		
 		if (internalMove == nullptr) {
-			std::string errorString = "Illegal Move: " + sfc::cfw::Square(m->fromFile, m->fromRank).getLabel() + " -> " + sfc::cfw::Square(m->toFile, m->toRank).getLabel();
+			std::string errorString = "Illegal Move: ";
+			errorString += std::to_string(pieceMoved) + " ";
+			errorString += "(" + std::to_string(m->fromFile) + ", " + std::to_string(m->fromRank) + ") -> ";
+			errorString += "(" + std::to_string(m->toFile) + ", " + std::to_string(m->toRank) + ")";
 			throw illegal_move(errorString);
 		}
 		
