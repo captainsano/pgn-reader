@@ -6,52 +6,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PGN Reader/PGNVariationFactory.cpp"
-            timestampString = "398968736.317253"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
-            landmarkName = "PGNVariationFactory::legalVariation(const PGNTokenizer::TempVariation &amp; tempVariation, const sfc::cfw::GameState &amp; initGameState)"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "PGNVariationFactory::legalVariation(PGNTokenizer::TempVariation const&amp;, sfc::cfw::GameState const&amp;)"
-                  moduleName = "PGN Reader"
-                  urlString = "file://localhost/Users/santhosbaala/Desktop/Projects/PGN%20Reader/PGN%20Reader/PGNVariationFactory.cpp"
-                  timestampString = "398968736.637532"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "84"
-                  endingLineNumber = "84"
-                  offsetFromSymbolStart = "6741">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "PGNVariationFactory::legalVariation(PGNTokenizer::TempVariation const&amp;, sfc::cfw::GameState const&amp;)"
-                  moduleName = "PGN Reader"
-                  urlString = "file://localhost/Users/santhosbaala/Desktop/Projects/PGN%20Reader/PGN%20Reader/PGNVariationFactory.cpp"
-                  timestampString = "398968736.638024"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "84"
-                  endingLineNumber = "84"
-                  offsetFromSymbolStart = "7661">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"

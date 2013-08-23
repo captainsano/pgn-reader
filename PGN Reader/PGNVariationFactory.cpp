@@ -91,7 +91,7 @@ std::shared_ptr<PGNVariation> PGNVariationFactory::legalVariation(const PGNToken
 		
 		// Add variations
 		for (auto v : m->variations) {
-			currentMove->addVariation(*(legalVariation(*v, initGameState)));
+			currentMove->addVariation(*(legalVariation(*v, currentGameState)));
 		}
 		
 		// Add NAGs

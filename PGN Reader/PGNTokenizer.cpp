@@ -50,7 +50,12 @@ PGNTokenizer::Token PGNTokenizer::nextToken(std::string::const_iterator begin, s
 					break;
 				}
 				
-				toReturn.contents += *i;
+				if (*i == '\n' || *i == '\r' || *i == '\v' || *i == '\t') {
+					toReturn.contents += ' ';
+				} else {
+					toReturn.contents += *i;
+				}
+				
 				toReturn.charactersConsumed++;
 				i++;
 			}

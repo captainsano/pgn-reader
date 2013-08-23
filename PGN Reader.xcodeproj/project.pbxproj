@@ -119,6 +119,7 @@
 		63AEF8C517C4DDDC000983E7 /* PGNMove.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGNMove.h; sourceTree = "<group>"; };
 		63AEF8CB17C4E405000983E7 /* PGNVariation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PGNVariation.cpp; sourceTree = "<group>"; };
 		63AEF8CC17C4E405000983E7 /* PGNVariation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGNVariation.h; sourceTree = "<group>"; };
+		63E18E4417C7C8EA007A6809 /* commented_game.pgn */ = {isa = PBXFileReference; lastKnownFileType = text; path = commented_game.pgn; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,6 +237,7 @@
 				636FDA8B17B75235006BBAAD /* premature_eof.pgn */,
 				636FDA8D17B752C6006BBAAD /* all_term_markers.pgn */,
 				639ADC7617C0939A005EC165 /* orphaned_comment.pgn */,
+				63E18E4417C7C8EA007A6809 /* commented_game.pgn */,
 				636FDA8F17B7580A006BBAAD /* game_termination_inside_comment.pgn */,
 			);
 			name = "PGN Test Files";
