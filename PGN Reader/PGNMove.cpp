@@ -9,7 +9,7 @@
 #include "PGNMove.h"
 #include "PGNVariation.h"
 
-PGNMove::PGNMove(const Move & aMove, std::vector<std::shared_ptr<PGNVariation>> aVariations, std::vector<unsigned int> aNAGs, const std::string & aTextAnnotation) : Move(aMove) {
+PGNMove::PGNMove(const Move & aMove, std::vector<PGNVariation> aVariations, std::vector<unsigned int> aNAGs, const std::string & aTextAnnotation) : Move(aMove) {
 	// Check if all the variations have the same before game state
 	for (auto v : aVariations) {
 		this->addVariation(v);
@@ -22,23 +22,18 @@ PGNMove::PGNMove(const Move & aMove, std::vector<std::shared_ptr<PGNVariation>> 
 	this->textAnnotation = aTextAnnotation;
 }
 
-void PGNMove::addVariation(std::shared_ptr<PGNVariation> aVariation) {
+void PGNMove::addVariation(const PGNVariation & aVariation) {
 	// Prevent addition of a variation in case it exists and prevent addition in case
 	// the before game state is not the same as this move
-	if (aVariation->size() == 0) {
+	if (aVariation.size() == 0) {
 		throw std::invalid_argument("The new variation is empty");
 	}
 	
-	if (*((*aVariation)[0].getGameStateBeforeMove()) == *(this->getGameStateBeforeMove())) {
+	if (*(aVariation[0].getGameStateBeforeMove()) == *(this->getGameStateBeforeMove())) {
 		this->variations.push_back(aVariation);
 	} else {
 		throw std::invalid_argument("The new variation's game state before move does not match");
 	}
-}
-
-void PGNMove::addVariation(const PGNVariation & aVariation) {
-	std::shared_ptr<PGNVariation> newVariation = std::make_shared<PGNVariation>(aVariation);
-	this->addVariation(newVariation);
 }
 
 void PGNMove::addNAG(const unsigned int & aNAG) {
