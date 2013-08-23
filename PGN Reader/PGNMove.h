@@ -30,6 +30,8 @@ public:
 	void appendTextAnnotation(const std::string & aTextAnnotation);
 	
 	inline bool hasVariations() const { return !(this->variations.empty()); }
+	
+	inline std::string getTextAnnotation() const { return this->textAnnotation; }
 	inline std::vector<PGNVariation> getVariations() const { return this->variations; }
 };
 

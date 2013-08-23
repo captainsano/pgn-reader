@@ -53,7 +53,7 @@
 	
 	PGNGame g(inputString);
 	
-	CPPAssertThrows(g.getMeta("invalid_key"), @"Should throw for invalid meta key");
+	XCTAssert(g.getMeta("invalid_key").length() == 0, @"Should return an empty string for invalid meta key");
 }
 
 - (void)testMetaDataMatch1 {
