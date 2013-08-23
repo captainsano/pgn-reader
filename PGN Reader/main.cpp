@@ -14,9 +14,9 @@
 
 int main(int argc, const char * argv[]) {
 	PGNFile f(__TEST_FILE_PATH__ + "test_file_1.pgn");
-	PGNGame g(f.getGame(0));
+	std::shared_ptr<PGNGame> g = f.getGame(0);
 	
-	std::cout << "Half Move Count: " << g.getHalfMoveCount() << std::endl;
+	std::cout << "Half Move Count: " << g->getHalfMoveCount() << std::endl;
 		
 	std::cout << std::endl;
 }

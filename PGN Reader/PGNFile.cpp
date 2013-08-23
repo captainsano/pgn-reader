@@ -207,18 +207,19 @@ unsigned int PGNFile::getGameCount() {
 	return (unsigned int)gamePointers.size();
 }
 
-std::string PGNFile::getGame(unsigned int i) {
+std::shared_ptr<PGNGame> PGNFile::getGame(unsigned int i) {
 	if (i > gamePointers.size()) {
 		throw std::out_of_range("The index i is not in range");
 	}
 	
-	std::string toReturn;
+	std::string gameString;
 	inputFileStream.clear();
 	inputFileStream.seekg(std::get<0>(gamePointers[i]));
 	
 	while (inputFileStream.good() && inputFileStream.tellg() != std::get<1>(gamePointers[i])) {
-		toReturn += inputFileStream.get();
+		gameString += inputFileStream.get();
 	}
 	
+	std::shared_ptr<PGNGame> toReturn = std::make_shared<PGNGame>(gameString);
 	return toReturn;
 }

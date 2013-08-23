@@ -13,6 +13,7 @@
 #include <sstream>
 #include <tuple>
 #include <vector>
+#include "PGNGame.h"
 
 class PGNFile {
 	std::ifstream inputFileStream;
@@ -26,7 +27,7 @@ public:
 	PGNFile(std::string fileName);
 	
 	unsigned int getGameCount();
-	std::string getGame(unsigned int i);
+	std::shared_ptr<PGNGame> getGame(unsigned int i);
 };
 
 #endif /* defined(__PGN_Reader__PGNFile__) */

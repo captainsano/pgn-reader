@@ -580,6 +580,6 @@ void PGNGame::parseMoveTextSection() {
 		throw e;
 	}
 	
-	this->mainVariation = *variation;
+	this->mainVariation = std::move(*variation);
 	__moveTextParsed = true;
 }
