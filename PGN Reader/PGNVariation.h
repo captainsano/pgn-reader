@@ -12,8 +12,7 @@
 #include <memory>
 #include <string>
 #include <vector>
-
-class PGNMove;
+#include "PGNMove.h"
 
 class PGNVariation {
 	std::string firstComment;
@@ -34,7 +33,16 @@ public:
 	inline std::string getFirstComment() { return this->firstComment; }	
 	inline auto size() -> decltype(moves.size()) { return moves.size(); }
 	
-	/* TODO: provide iterators */
+	/* Iterator and Subscript access */
+	using const_iterator = decltype(moves)::const_iterator;
+	
+	const_iterator cbegin() { return moves.cbegin(); }
+	const_iterator cend() { return moves.cend(); }
+	
+	using size_type = decltype(moves)::size_type;
+	using const_reference = decltype(moves)::const_reference;
+		
+	const_reference operator[] (size_type idx) { return moves[idx]; }
 };
 
 #endif /* defined(__PGN_Reader__PGNVariation__) */

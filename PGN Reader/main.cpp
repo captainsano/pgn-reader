@@ -13,10 +13,15 @@
 #define __TEST_FILE_PATH__ std::string("/Users/santhosbaala/Desktop/Projects/PGN Reader/PGN Reader Tests/")
 
 int main(int argc, const char * argv[]) {
-	PGNFile f(__TEST_FILE_PATH__ + "test_file_1.pgn");
+	PGNFile f(__TEST_FILE_PATH__ + "1.pgn");
 	std::shared_ptr<PGNGame> g = f.getGame(0);
 	
 	std::cout << "Half Move Count: " << g->getHalfMoveCount() << std::endl;
+	
+	for (PGNGame::const_iterator m = g->cbegin(); m != g->cend(); m++) {
 		
+		std::cout << (*m)->getSANString() << " ";
+	}
+	
 	std::cout << std::endl;
 }

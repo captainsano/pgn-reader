@@ -31,12 +31,22 @@ public:
 	PGNGame() = default;
 	PGNGame(const std::string & pgnString);
 	
+	
+	
 	std::string	getMeta(std::string key);
 	
 	std::string	getFirstComment();
 	auto getHalfMoveCount() -> decltype(mainVariation.size());
 	
-	/* TODO: Provide Iterators */
+	/* Iterator and Subscript access */
+	using const_iterator = decltype(mainVariation)::const_iterator;
+	const_iterator cbegin() { return mainVariation.cbegin(); }
+	const_iterator cend() { return mainVariation.cend(); }
+	
+	using size_type = decltype(mainVariation)::size_type;
+	using const_reference = decltype(mainVariation)::const_reference;
+
+	const_reference operator[] (size_type idx) { return mainVariation[idx]; }
 };
 
 #endif /* defined(__PGN_Reader__PGNGame__) */
