@@ -12,6 +12,8 @@
 #include <vector>
 #include <stack>
 
+#include "PGNException.h"
+
 #include "Piece.h"
 #include "PGNTokenizer.h"
 #include "PGNVariationFactory.h"
@@ -19,7 +21,7 @@
 
 PGNGame::PGNGame(const std::string & pgnString) {
 	if (pgnString.size() == 0) {
-		throw std::invalid_argument("The given pgnString is blank");
+		throw parse_error("The game string is blank");
 	}
 	
 	gameString = std::regex_replace(pgnString, std::regex("(\r\n)|(\n\r)"), "\n");
@@ -47,7 +49,7 @@ std::string PGNGame::getMeta(std::string key) {
 	}
 	
 	if (!meta.count(key)) {
-		throw std::out_of_range("The given key does not exist in the meta");
+		return "";
 	}
 	
 	return meta[key];
@@ -68,7 +70,8 @@ void PGNGame::parseMetaSection() {
 	std::string currentKey, currentValue;
 	std::map<std::string, std::string> parsedMeta;
 	
-	for (auto i = gameString.cbegin(); i != gameString.cend(); i++) {
+	auto i = gameString.cbegin();
+	for (; i != gameString.cend(); i++) {
 		switch (currentState) {
 			case MetaReadStateInit: {
 				switch (*i) {
@@ -84,7 +87,7 @@ void PGNGame::parseMetaSection() {
 					}
 						
 					default: {
-						throw std::out_of_range("Character was not recognizable");
+						throw parse_error("Character was not recognizable: " + std::string({*i}));
 						break;
 					}
 				}
@@ -108,7 +111,7 @@ void PGNGame::parseMetaSection() {
 					}
 						
 					default: {
-						throw std::out_of_range("Character was not recognizable");
+						throw parse_error("Character was not recognizable: " + std::string({*i}));
 						break;
 					}
 				}
@@ -147,7 +150,7 @@ void PGNGame::parseMetaSection() {
 					}
 						
 					default: {
-						throw std::out_of_range("Character was not recognizable");
+						throw parse_error("Character was not recognizable: " + std::string({*i}));
 						break;
 					}
 				}
@@ -184,7 +187,7 @@ void PGNGame::parseMetaSection() {
 					}
 						
 					default: {
-						throw std::out_of_range("Character was not recognizable");
+						throw parse_error("Character was not recognizable: " + std::string({*i}));
 						break;
 					}
 				}
@@ -204,7 +207,7 @@ void PGNGame::parseMetaSection() {
 					}
 						
 					default: {
-						throw std::out_of_range("Character was not recognizable");
+						throw parse_error("Character was not recognizable: " + std::string({*i}));
 						break;
 					}
 				}
@@ -223,7 +226,7 @@ void PGNGame::parseMetaSection() {
 	}
 	
 	if (currentState != MetaReadStateFinal) {
-		throw std::invalid_argument("Parse Error");
+		throw parse_error("An error was encountered while parsing: "  + std::string({*i}));
 	} else {
 		this->meta = std::move(parsedMeta);
 		__metaParsed = true;
@@ -252,7 +255,8 @@ void PGNGame::parseMoveTextSection() {
 	// current variation, move and annotation.
 	std::stack<std::tuple<decltype(currentTempVariation), decltype(prevMove)>> RAVStack;
 		
-	for (auto i = gameString.cbegin() + moveTextSectionBeginOffset; i != gameString.cend(); ) {
+	auto i = gameString.cbegin() + moveTextSectionBeginOffset;
+	for (; i != gameString.cend(); ) {
 		PGNTokenizer::Token t = PGNTokenizer::nextToken(i, gameString.cend());
 		
 		switch (currentState) {
@@ -297,7 +301,7 @@ void PGNGame::parseMoveTextSection() {
 					}
 						
 					default: {
-						throw std::out_of_range("Invalid token encountered");
+						throw parse_error("Invalid token encountered: " + t.contents + " " + std::to_string(__LINE__));
 						break;
 					}
 				}
@@ -331,7 +335,7 @@ void PGNGame::parseMoveTextSection() {
 					}
 						
 					default: {
-						throw std::out_of_range("Invalid token encountered");
+						throw parse_error("Invalid token encountered: " + t.contents + " " + std::to_string(__LINE__));
 						break;
 					}
 				}
@@ -397,7 +401,7 @@ void PGNGame::parseMoveTextSection() {
 					}
 						
 					default: {
-						throw std::out_of_range("Invalid token encountered");
+						throw parse_error("Invalid token encountered: " + t.contents + " " + std::to_string(__LINE__));
 						break;
 					}
 				}
@@ -439,7 +443,7 @@ void PGNGame::parseMoveTextSection() {
 					}
 						
 					default: {
-						throw std::out_of_range("Invalid token encountered");
+						throw parse_error("Invalid token encountered: " + t.contents + " " + std::to_string(__LINE__));
 						break;
 					}
 				}
@@ -473,7 +477,7 @@ void PGNGame::parseMoveTextSection() {
 					}
 						
 					default: {
-						throw std::out_of_range("Invalid token encountered");
+						throw parse_error("Invalid token encountered: " + t.contents + " " + std::to_string(__LINE__));
 						break;
 					}
 				}
@@ -546,7 +550,7 @@ void PGNGame::parseMoveTextSection() {
 					}
 						
 					default: {
-						throw std::out_of_range("Invalid token encountered");
+						throw parse_error("Invalid token encountered: " + t.contents + " " + std::to_string(__LINE__));
 						break;
 					}
 				}
@@ -567,19 +571,13 @@ void PGNGame::parseMoveTextSection() {
 	}
 	
 	if (currentState != MoveTextReadStateFinal) {
-		throw std::invalid_argument("Move text contains unrecognizable text");
+		throw parse_error("Move text contains unrecognizable text: " + std::string({*i}) + " " + std::to_string(__LINE__));
 	}
 	
 	/*-------------------------- Legality Checking for a variation -----------------------------*/
-	std::shared_ptr<PGNVariation> variation = nullptr;
-	try {
-		variation = PGNVariationFactory::legalVariation(*currentTempVariation, sfc::cfw::GameState("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR",
-																								   sfc::cfw::ColorWhite,
-																								   "KQkq"));
-	} catch (std::exception & e) {
-		throw e;
-	}
-	
+	std::shared_ptr<PGNVariation> variation = PGNVariationFactory::legalVariation(*currentTempVariation, sfc::cfw::GameState("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR",
+																															 sfc::cfw::ColorWhite,
+																															 "KQkq"));
 	this->mainVariation = std::move(*variation);
 	__moveTextParsed = true;
 }

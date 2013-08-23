@@ -9,12 +9,12 @@
 #include "PGNFile.h"
 
 #include <iostream>
-#include <exception>
+#include "PGNException.h"
 
 PGNFile::PGNFile(std::string fileName) {
 	inputFileStream.open(fileName);
 	if (!inputFileStream.good()) {
-		throw std::invalid_argument("The file does not exist or not readable");
+		throw std::invalid_argument("The file does not exist or is unreadable");
 	}
 	
 	setGamePointers();
@@ -67,7 +67,7 @@ void PGNFile::setGamePointers() {
 						
 					default: {
 						// Invalid character encountered
-						throw std::invalid_argument("Invalid character encountered while searching for meta data");
+						throw parse_error("Invalid character encountered while searching for meta data");
 						break;
 					}
 				}
@@ -199,7 +199,7 @@ void PGNFile::setGamePointers() {
 	
 	// Check the pointers for begin and end were properly set - Invalid state
 	if (currentGameBegin != 0 && currentGameEnd == 0) {
-		throw std::invalid_argument("The game termination string was not found for a game");
+		throw parse_error("The game termination string was not found for a game");
 	}
 }
 

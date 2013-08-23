@@ -177,6 +177,7 @@
 			children = (
 				636FDA6217B678B9006BBAAD /* main.cpp */,
 				636FDA6417B678B9006BBAAD /* PGN_Reader.1 */,
+				631573B017C62F2B00E66A6E /* PGNException.h */,
 				636FDA9117B75902006BBAAD /* PGNFile.cpp */,
 				636FDA9217B75902006BBAAD /* PGNFile.h */,
 				63972FEB17BF893A004A323C /* PGNGame.cpp */,
@@ -189,7 +190,6 @@
 				63028D9E17C529BF008BC1DF /* PGNVariationFactory.h */,
 				631573AA17C61E5700E66A6E /* PGNTokenizer.cpp */,
 				631573A617C61D8700E66A6E /* PGNTokenizer.h */,
-				631573B017C62F2B00E66A6E /* PGNException.h */,
 			);
 			path = "PGN Reader";
 			sourceTree = "<group>";

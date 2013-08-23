@@ -9,16 +9,17 @@
 #ifndef PGN_Reader_PGNException_h
 #define PGN_Reader_PGNException_h
 
+#include <string>
 #include <exception>
 
-class illegal_move : public std::exception {
-	std::string reason;
-public:
-	illegal_move(const std::string & aReason) : reason(aReason) { }
-	
-	const char* what() const noexcept override {
-		return this->reason.c_str();
-	}
+struct illegal_move : public std::runtime_error {
+	illegal_move(const std::string & __s) : runtime_error(__s) { }
+	illegal_move(const char * __s) : runtime_error(__s) { }
+};
+
+struct parse_error : public std::runtime_error {
+	parse_error(const std::string & __s) : runtime_error(__s) { }
+	parse_error(const char * __s) : runtime_error(__s) { }
 };
 
 #endif

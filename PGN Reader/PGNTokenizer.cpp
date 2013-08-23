@@ -7,6 +7,7 @@
 //
 
 #include "PGNTokenizer.h"
+#include "PGNException.h"
 #include <regex>
 
 PGNTokenizer::Token PGNTokenizer::nextToken(std::string::const_iterator begin, std::string::const_iterator end) {
@@ -96,7 +97,7 @@ PGNTokenizer::Token PGNTokenizer::nextToken(std::string::const_iterator begin, s
 					break;
 				} else {
 					// Incomplete token '0-1'
-					throw std::invalid_argument("Game termination token '0-1' incomplete");
+					throw parse_error("Game termination token '0-1' incomplete");
 				}
 			}
 			// Else fall through.
@@ -111,7 +112,7 @@ PGNTokenizer::Token PGNTokenizer::nextToken(std::string::const_iterator begin, s
 					break;
 				} else {
 					// Incomplete token '1-0'
-					throw std::invalid_argument("Game termination token '1-0' incomplete");
+					throw parse_error("Game termination token '1-0' incomplete");
 				}
 			}
 			
@@ -125,7 +126,7 @@ PGNTokenizer::Token PGNTokenizer::nextToken(std::string::const_iterator begin, s
 					break;
 				} else {
 					// Incomplete token '1/2-1/2'
-					throw std::invalid_argument("Game termination token '1/2-1/2' incomplete");
+					throw parse_error("Game termination token '1/2-1/2' incomplete");
 				}
 			}
 			// Else fall through
@@ -158,7 +159,7 @@ PGNTokenizer::Token PGNTokenizer::nextToken(std::string::const_iterator begin, s
 			i++;
 			toReturn.charactersConsumed++;	// For '$'
 			if (i == end) {
-				throw std::invalid_argument("NAG token incomplete");
+				throw parse_error("NAG token incomplete");
 			}
 			
 			while (i != end) {
@@ -230,7 +231,7 @@ PGNTokenizer::Token PGNTokenizer::nextToken(std::string::const_iterator begin, s
 				toReturn.contents = "--";
 				toReturn.charactersConsumed = 2;
 			} else {
-				throw std::invalid_argument("Null move token incomplete");
+				throw parse_error("Null move token incomplete");
 			}
 			
 			break;
@@ -264,7 +265,7 @@ PGNTokenizer::Token PGNTokenizer::nextToken(std::string::const_iterator begin, s
 			}
 			
 			if (toReturn.subType == TokenSubTypeNone) {
-				throw std::invalid_argument("Move token castling incomplete");
+				throw parse_error("Move token castling incomplete");
 			}
 			
 			break;
@@ -349,7 +350,7 @@ PGNTokenizer::Token PGNTokenizer::nextToken(std::string::const_iterator begin, s
 			
 			// Something wrong in case sub-type has not been set
 			if (toReturn.subType == TokenSubTypeNone) {
-				throw std::invalid_argument("Pawn move token incomplete");
+				throw parse_error("Pawn move token incomplete");
 			}
 			
 			break;
@@ -369,7 +370,7 @@ PGNTokenizer::Token PGNTokenizer::nextToken(std::string::const_iterator begin, s
 			
 			// Try to match king move with square disambiguation so as to declare the token invalid
 			if (std::regex_search(toReturn.contents, std::regex("^K[a-h][1-8]x?[a-h][1-8]"))) {
-				throw std::invalid_argument("King move token should not contain fromSquare");
+				throw parse_error("King move token should not contain fromSquare");
 			}
 			
 			// Match normal king move
@@ -385,7 +386,7 @@ PGNTokenizer::Token PGNTokenizer::nextToken(std::string::const_iterator begin, s
 					toReturn.contents.erase(1, 1);	// Erase 'x' character at index 1.
 				}
 			} else {
-				throw std::invalid_argument("King move token incomplete");
+				throw parse_error("King move token incomplete");
 			}
 			
 			break;
@@ -479,7 +480,7 @@ PGNTokenizer::Token PGNTokenizer::nextToken(std::string::const_iterator begin, s
 
 void PGNTokenizer::fillTempMoveWithToken(TempMove & move, const Token & t) {
 	if (t.type != TokenGenericMove) {
-		throw std::invalid_argument("Supplied token should be a move");
+		throw parse_error("Supplied token should be a move");
 	}
 	
 	switch (t.subType) {
@@ -575,7 +576,7 @@ void PGNTokenizer::fillTempMoveWithToken(TempMove & move, const Token & t) {
 		}
 			
 		default:
-			throw std::invalid_argument("Token sub-type is not related to move");
+			throw parse_error("Token sub-type is not related to move");
 			break;
 	}
 }
