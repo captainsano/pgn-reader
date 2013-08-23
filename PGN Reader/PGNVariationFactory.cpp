@@ -100,7 +100,7 @@ std::shared_ptr<PGNVariation> PGNVariationFactory::legalVariation(const PGNToken
 		currentMove->appendTextAnnotation(m->textAnnotation);
 		
 		// Add this move to the main variation
-		toReturn->addMove(currentMove);
+		toReturn->addMove(*currentMove);
 		
 		// Update the current game state
 		currentGameState = *(currentMove->getGameStateAfterMove());

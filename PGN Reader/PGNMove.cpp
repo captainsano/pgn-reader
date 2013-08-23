@@ -25,11 +25,11 @@ PGNMove::PGNMove(const Move & aMove, std::vector<std::shared_ptr<PGNVariation>> 
 void PGNMove::addVariation(std::shared_ptr<PGNVariation> aVariation) {
 	// Prevent addition of a variation in case it exists and prevent addition in case
 	// the before game state is not the same as this move
-	if (aVariation->getFirstMove() == nullptr) {
+	if (aVariation->size() == 0) {
 		throw std::invalid_argument("The new variation is empty");
 	}
 	
-	if (*(aVariation->getFirstMove()->getGameStateBeforeMove()) == *(this->getGameStateBeforeMove())) {
+	if (*((*aVariation)[0].getGameStateBeforeMove()) == *(this->getGameStateBeforeMove())) {
 		this->variations.push_back(aVariation);
 	} else {
 		throw std::invalid_argument("The new variation's game state before move does not match");
@@ -57,7 +57,7 @@ void PGNMove::appendTextAnnotation(const std::string & aTextAnnotation) {
 	this->textAnnotation += aTextAnnotation;
 }
 
-std::string PGNMove::getSANString() {
+std::string PGNMove::getSANString() const {
 	std::string toReturn;
 	
 	if (this->getCastlingType() == sfc::cfw::CastlingTypeKSide) {

@@ -16,33 +16,28 @@
 
 class PGNVariation {
 	std::string firstComment;
-	std::vector<std::shared_ptr<PGNMove>> moves;
+	std::vector<PGNMove> moves;
 	
 public:
 	PGNVariation() = default;
 	PGNVariation(const std::string & aFirstComment) : firstComment(aFirstComment) { }
-	PGNVariation(std::vector<std::shared_ptr<PGNMove>> aMoves, const std::string & aFirstComment = "") : moves(aMoves) { }
+	PGNVariation(std::vector<PGNMove> aMoves, const std::string & aFirstComment = "") : moves(aMoves) { }
 	
-	inline void addMove(std::shared_ptr<PGNMove> aMove) { this->moves.push_back(aMove); }
-	
-	inline std::shared_ptr<PGNMove> getFirstMove() {
-		if (this->moves.size() > 0) return this->moves[0];
-		return nullptr;
-	}
-	
-	inline std::string getFirstComment() { return this->firstComment; }	
-	inline auto size() -> decltype(moves.size()) { return moves.size(); }
+	inline void addMove(PGNMove aMove) { this->moves.push_back(aMove); }
+		
+	inline std::string getFirstComment() const { return this->firstComment; }
 	
 	/* Iterator and Subscript access */
 	using const_iterator = decltype(moves)::const_iterator;
 	
-	const_iterator cbegin() { return moves.cbegin(); }
-	const_iterator cend() { return moves.cend(); }
+	const_iterator cbegin() const { return moves.cbegin(); }
+	const_iterator cend() const { return moves.cend(); }
 	
-	using size_type = decltype(moves)::size_type;
 	using const_reference = decltype(moves)::const_reference;
-		
-	const_reference operator[] (size_type idx) { return moves[idx]; }
+	using size_type = decltype(moves)::size_type;
+
+	inline size_type size() const { return moves.size(); }
+	const_reference operator[] (size_type idx) const { return moves[idx]; }
 };
 
 #endif /* defined(__PGN_Reader__PGNVariation__) */
