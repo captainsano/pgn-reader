@@ -93,12 +93,30 @@ PGNTokenizer::Token PGNTokenizer::nextToken(std::string::const_iterator begin, s
 		}
 			
 			/*--------------------- Move Number and Game termination -----------------------*/
+			/* Additional Non-Standard Case -> Castling with 0s instead of uppercase Os */
 		case '0': {
 			if ((i+1) != end && *(i+1) == '-') {
 				if ((i+2) != end && *(i+2) == '1') {
 					toReturn.type = TokenGameTermination;
 					toReturn.contents = "0-1";
 					toReturn.charactersConsumed = 3;
+					break;
+				} else if ((i+2) != end && *(i+2) == '0') {
+					toReturn.type = TokenGenericMove;
+					toReturn.subType = TokenSubTypeMoveKingSideCastling;
+					toReturn.contents = "O-O";
+					toReturn.charactersConsumed = 3;
+					
+					// Check if and extra -O is attached for QSide castling
+					if ((i+3) != end && *(i+3) == '-') {
+						if ((i+4) != end && *(i+4) == '0') {
+							toReturn.subType = TokenSubTypeMoveQueenSideCastling;
+							toReturn.contents = "O-O-O";
+							toReturn.charactersConsumed = 5;
+						} else {
+							throw parse_error("Move token castling incomplete");
+						}
+					}
 					break;
 				} else {
 					// Incomplete token '0-1'

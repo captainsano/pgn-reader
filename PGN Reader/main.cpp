@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <vector>
+#include <cmath>
 #include "PGNFile.h"
 #include "PGNGame.h"
 #include "PGNException.h"
@@ -21,13 +22,29 @@ int main(int argc, const char * argv[]) {
 	PGNFile f;
 	std::shared_ptr<PGNGame> g = nullptr;
 	try {
-		f = PGNFile(__COMPLEX_GAMES_FILE_PATH__ + "GM_games.pgn");
+		f = PGNFile(__TEST_FILE_PATH__ + "zero_castling.pgn");
+		// f = PGNFile(__COMPLEX_GAMES_FILE_PATH__ + "europe_echecs.pgn");
 	} catch (std::exception & e) {
 		std::cout << "PGNFile error: " << e.what() << std::endl;
 		exit(0);
 	}
 	
 	std::cout << "\n Number of games: " << f.getGameCount() << std::endl;
+	
+	for (int i = 0; i < f.getGameCount(); i++) {
+		try {
+			g = f.getGame(i);
+			std::cout << "\n Game: " << (i + 1);
+			std::cout << "\n Move Count: " << std::ceil(g->getHalfMoveCount() / 2);
+			std::cout << "\n Half Moves: " << g->getHalfMoveCount() << std::endl;
+		} catch (illegal_move & e) {
+			std::cout << "\nIllegal move: " << e.what() << std::endl;
+		} catch (parse_error & e) {
+			std::cout << "\n Parse Error: " << e.what() << std::endl;
+		} catch (std::exception & e) {
+			std::cout << "\n Unknown Error: " << e.what() << std::endl;
+		}
+	}
 		
 	/*
 	try {

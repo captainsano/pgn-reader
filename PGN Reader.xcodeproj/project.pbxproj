@@ -12,6 +12,8 @@
 		631573AC17C61E5700E66A6E /* PGNTokenizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 631573AA17C61E5700E66A6E /* PGNTokenizer.cpp */; };
 		631573AE17C6225000E66A6E /* PGNVariationFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 631573AD17C6225000E66A6E /* PGNVariationFactory.cpp */; };
 		631573AF17C6225000E66A6E /* PGNVariationFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 631573AD17C6225000E66A6E /* PGNVariationFactory.cpp */; };
+		631FE87217C8A77400265B36 /* zero_castling_00.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 631FE87017C8A77400265B36 /* zero_castling_00.pgn */; };
+		631FE87317C8A77400265B36 /* zero_castling_000.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 631FE87117C8A77400265B36 /* zero_castling_000.pgn */; };
 		63266C8E17C868A70080D3DF /* ComplexGames_Tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 63266C8D17C868A70080D3DF /* ComplexGames_Tests.mm */; };
 		63266C9317C868D80080D3DF /* complex games in Resources */ = {isa = PBXBuildFile; fileRef = 63266C9217C868D80080D3DF /* complex games */; };
 		63266C9517C87E360080D3DF /* zero_castling.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 63266C9417C87E360080D3DF /* zero_castling.pgn */; };
@@ -93,6 +95,8 @@
 		631573AA17C61E5700E66A6E /* PGNTokenizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PGNTokenizer.cpp; sourceTree = "<group>"; };
 		631573AD17C6225000E66A6E /* PGNVariationFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PGNVariationFactory.cpp; sourceTree = "<group>"; };
 		631573B017C62F2B00E66A6E /* PGNException.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PGNException.h; sourceTree = "<group>"; };
+		631FE87017C8A77400265B36 /* zero_castling_00.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = zero_castling_00.pgn; sourceTree = "<group>"; };
+		631FE87117C8A77400265B36 /* zero_castling_000.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = zero_castling_000.pgn; sourceTree = "<group>"; };
 		63266C8D17C868A70080D3DF /* ComplexGames_Tests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ComplexGames_Tests.mm; sourceTree = "<group>"; };
 		63266C9217C868D80080D3DF /* complex games */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "complex games"; sourceTree = "<group>"; };
 		63266C9417C87E360080D3DF /* zero_castling.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = zero_castling.pgn; sourceTree = "<group>"; };
@@ -238,6 +242,8 @@
 			isa = PBXGroup;
 			children = (
 				63266C9417C87E360080D3DF /* zero_castling.pgn */,
+				631FE87017C8A77400265B36 /* zero_castling_00.pgn */,
+				631FE87117C8A77400265B36 /* zero_castling_000.pgn */,
 				639ADC7417C09369005EC165 /* no_moves.pgn */,
 				636ED92717B96F3100A24276 /* 1.pgn */,
 				636FDA8617B751B8006BBAAD /* empty_file.pgn */,
@@ -360,8 +366,10 @@
 				636FDA7817B678CA006BBAAD /* InfoPlist.strings in Resources */,
 				636FDA8A17B751F2006BBAAD /* test_file_1.pgn in Resources */,
 				636FDA9017B7580A006BBAAD /* game_termination_inside_comment.pgn in Resources */,
+				631FE87317C8A77400265B36 /* zero_castling_000.pgn in Resources */,
 				636FDA8C17B75235006BBAAD /* premature_eof.pgn in Resources */,
 				63266C9517C87E360080D3DF /* zero_castling.pgn in Resources */,
+				631FE87217C8A77400265B36 /* zero_castling_00.pgn in Resources */,
 				636FDA8E17B752C6006BBAAD /* all_term_markers.pgn in Resources */,
 				639ADC7317C090B5005EC165 /* test_file_2_CRLF.pgn in Resources */,
 				63266C9317C868D80080D3DF /* complex games in Resources */,

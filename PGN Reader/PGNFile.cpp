@@ -31,7 +31,6 @@ void PGNFile::setGamePointers() {
 	
 	std::ifstream::pos_type currentGameBegin = 0, currentGameEnd = 0;
 	
-	int recursionLevel = 0;
 	while (inputFileStream.good()) {
 		char ch = inputFileStream.get();
 		if (ch == EOF) {
@@ -84,7 +83,6 @@ void PGNFile::setGamePointers() {
 				switch (ch) {
 					// Skip text commentary
 					case '{': {
-						recursionLevel++;
 						readingStatus = ReadingTextCommentary;
 						break;
 					}
@@ -189,14 +187,8 @@ void PGNFile::setGamePointers() {
 			}
 				
 			case ReadingTextCommentary: {
-				if (ch == '{') {
-					recursionLevel++;
-				}
 				if (ch == '}') {
-					recursionLevel--;
-					if (recursionLevel == 0) {
-						readingStatus = ReadingMoveText;
-					}
+					readingStatus = ReadingMoveText;
 				}
 				break;
 			}

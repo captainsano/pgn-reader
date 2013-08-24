@@ -143,4 +143,34 @@
 	}
 }
 
+- (void)testReturnsCorrectHalfMoveCountForZeroCastlingKSide {
+	std::ifstream file(__TEST_FILE_PATH__ + "zero_castling_00.pgn");
+	std::string inputString;
+	while (file.good()) {
+		inputString += file.get();
+	}
+	
+	try {
+		PGNGame g(inputString);
+		XCTAssertTrue(g.getHalfMoveCount() == 122, @"Move count should match");
+	} catch (std::exception & e) {
+		XCTFail(@"Half move count should match the game %s", e.what());
+	}
+}
+
+- (void)testReturnsCorrectHalfMoveCountForZeroCastlingQSide {
+	std::ifstream file(__TEST_FILE_PATH__ + "zero_castling_000.pgn");
+	std::string inputString;
+	while (file.good()) {
+		inputString += file.get();
+	}
+	
+	try {
+		PGNGame g(inputString);
+		XCTAssertTrue(g.getHalfMoveCount() == 63, @"Move count should match");
+	} catch (std::exception & e) {
+		XCTFail(@"Half move count should match the game %s", e.what());
+	}
+}
+
 @end
