@@ -34,14 +34,17 @@ void PGNFile::setGamePointers() {
 	int recursionLevel = 0;
 	while (inputFileStream.good()) {
 		char ch = inputFileStream.get();
+		if (ch == EOF) { break; }
 		
+		std::cout << ch;
+		fflush(stdout);
 		// Skip whitespaces
 		if (ch == '\n' ||
 			ch == '\r' ||
 			ch == '\t' ||
 			ch == '\v' ||
 			ch == ' ' ||
-			ch == EOF) {
+			ch == '\0') {
 			continue;
 		}
 		
@@ -156,14 +159,19 @@ void PGNFile::setGamePointers() {
 							// See if the next few characters read 0-1
 							case '0': {
 								if (inputFileStream.peek() == '-') {
-									char next1 = inputFileStream.get(), next2;
+									inputFileStream.get();	// For '-'
+									char next2;
 									if (inputFileStream.good()) {
 										next2 = inputFileStream.get();
 										if (next2 == '1') {
 											currentGameEnd = inputFileStream.tellg();
 										} else {
-											inputFileStream.putback(next1);
-											inputFileStream.putback(next2);
+											inputFileStream.unget();
+											inputFileStream.unget();
+											
+											if (!inputFileStream.good()) {
+												std::cout << "\n" << "Input Stream got invalidated!";
+											}
 										}
 									}
 								}
@@ -202,6 +210,7 @@ void PGNFile::setGamePointers() {
 	
 	// Check the pointers for begin and end were properly set - Invalid state
 	if (currentGameBegin != 0 && currentGameEnd == 0) {
+		std::cout << "\n" << currentGameBegin << " " << std::endl;
 		throw parse_error("The game termination string was not found for a game ");
 	}
 }

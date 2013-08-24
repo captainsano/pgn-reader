@@ -14,6 +14,7 @@
 		631573AF17C6225000E66A6E /* PGNVariationFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 631573AD17C6225000E66A6E /* PGNVariationFactory.cpp */; };
 		63266C8E17C868A70080D3DF /* ComplexGames_Tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 63266C8D17C868A70080D3DF /* ComplexGames_Tests.mm */; };
 		63266C9317C868D80080D3DF /* complex games in Resources */ = {isa = PBXBuildFile; fileRef = 63266C9217C868D80080D3DF /* complex games */; };
+		63266C9517C87E360080D3DF /* zero_castling.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 63266C9417C87E360080D3DF /* zero_castling.pgn */; };
 		635B407017C485A200D6BAE0 /* libChessFrameworkLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 635B406F17C4859600D6BAE0 /* libChessFrameworkLibrary.a */; };
 		635B407117C485C600D6BAE0 /* libChessFrameworkLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 635B406F17C4859600D6BAE0 /* libChessFrameworkLibrary.a */; };
 		636ED92817B96F3100A24276 /* 1.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 636ED92717B96F3100A24276 /* 1.pgn */; };
@@ -94,6 +95,7 @@
 		631573B017C62F2B00E66A6E /* PGNException.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PGNException.h; sourceTree = "<group>"; };
 		63266C8D17C868A70080D3DF /* ComplexGames_Tests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ComplexGames_Tests.mm; sourceTree = "<group>"; };
 		63266C9217C868D80080D3DF /* complex games */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "complex games"; sourceTree = "<group>"; };
+		63266C9417C87E360080D3DF /* zero_castling.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = zero_castling.pgn; sourceTree = "<group>"; };
 		635B406417C4859600D6BAE0 /* ChessFramework.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ChessFramework.xcodeproj; path = ../ChessFramework/ChessFramework/ChessFramework.xcodeproj; sourceTree = "<group>"; };
 		636ED92717B96F3100A24276 /* 1.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 1.pgn; sourceTree = "<group>"; };
 		636FDA5F17B678B9006BBAAD /* PGN Reader */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "PGN Reader"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -235,6 +237,7 @@
 		636FDA8817B751C5006BBAAD /* PGN Test Files */ = {
 			isa = PBXGroup;
 			children = (
+				63266C9417C87E360080D3DF /* zero_castling.pgn */,
 				639ADC7417C09369005EC165 /* no_moves.pgn */,
 				636ED92717B96F3100A24276 /* 1.pgn */,
 				636FDA8617B751B8006BBAAD /* empty_file.pgn */,
@@ -358,6 +361,7 @@
 				636FDA8A17B751F2006BBAAD /* test_file_1.pgn in Resources */,
 				636FDA9017B7580A006BBAAD /* game_termination_inside_comment.pgn in Resources */,
 				636FDA8C17B75235006BBAAD /* premature_eof.pgn in Resources */,
+				63266C9517C87E360080D3DF /* zero_castling.pgn in Resources */,
 				636FDA8E17B752C6006BBAAD /* all_term_markers.pgn in Resources */,
 				639ADC7317C090B5005EC165 /* test_file_2_CRLF.pgn in Resources */,
 				63266C9317C868D80080D3DF /* complex games in Resources */,

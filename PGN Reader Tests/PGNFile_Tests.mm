@@ -57,6 +57,12 @@
 	XCTAssertTrue(f.getGameCount() == 4, @"PGN file should be able to recognize all game termination markers");
 }
 
+- (void)testRecognizesCastlingStringWithZeros {
+	PGNFile f;
+	CPPAssertNoThrow(f = PGNFile(__TEST_FILE_PATH__ + "zero_castling.pgn"), @"PGN file uses non-standard castling string with 0s");
+	XCTAssertTrue(f.getGameCount() == 2, @"PGN file should be able to recognize and distinguish 0s castling string");
+}
+
 - (void)testSkipsGameTerminationInsideTextAnnotation {
 	PGNFile f(__TEST_FILE_PATH__ + "game_termination_inside_comment.pgn");
 	XCTAssertTrue(f.getGameCount() == 1, @"Game count should be equal to 1");
