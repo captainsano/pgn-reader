@@ -34,10 +34,12 @@ void PGNFile::setGamePointers() {
 	int recursionLevel = 0;
 	while (inputFileStream.good()) {
 		char ch = inputFileStream.get();
-		if (ch == EOF) { break; }
+		if (ch == EOF) {
+			// std::cout << "\n EOF begin: " << currentGameBegin << " " << currentGameEnd << std::endl;
+			break;
+		}
 		
-		std::cout << ch;
-		fflush(stdout);
+		// std::cout << ch; fflush(stdout);
 		// Skip whitespaces
 		if (ch == '\n' ||
 			ch == '\r' ||
@@ -98,45 +100,43 @@ void PGNFile::setGamePointers() {
 							// See if the next few characters read 1-0 or 1/2-1/2
 							case '1': {
 								if (inputFileStream.peek() == '-') {
-									char next1 = inputFileStream.get(), next2;
+									inputFileStream.get();	// For '-'
+									char next2;
 									if (inputFileStream.good()) {
 										next2 = inputFileStream.get();
 										if (next2 == '0') {
 											currentGameEnd = inputFileStream.tellg();
 										} else {
-											inputFileStream.putback(next1);
-											inputFileStream.putback(next2);
+											for (int x = 0; x < 2; x++) { inputFileStream.unget(); }
+											break;
 										}
 									}
 								} else if (inputFileStream.peek() == '/') {
-									char next1 = inputFileStream.get(), next2, next3, next4, next5, next6;
+									inputFileStream.get();	// For '/'
+									char next2, next3, next4, next5, next6;
 									if (inputFileStream.good()) { next2 = inputFileStream.get(); }
 									else {
-										inputFileStream.putback(next1);
+										inputFileStream.unget();
 										break;
 									}
 									if (inputFileStream.good()) { next3 = inputFileStream.get(); }
 									else {
-										inputFileStream.putback(next1); inputFileStream.putback(next2);
+										for (int x = 0; x < 2; x++) { inputFileStream.unget(); }
 										break;
 									}
 									if (inputFileStream.good()) { next4 = inputFileStream.get(); }
 									else {
-										inputFileStream.putback(next1); inputFileStream.putback(next2);
-										inputFileStream.putback(next3);
+										for (int x = 0; x < 3; x++) { inputFileStream.unget(); }
 										break;
 									}
 									if (inputFileStream.good()) { next5 = inputFileStream.get(); }
 									else {
-										inputFileStream.putback(next1); inputFileStream.putback(next2);
-										inputFileStream.putback(next3); inputFileStream.putback(next4);
+										for (int x = 0; x < 4; x++) { inputFileStream.unget(); }
 										break;
 									}
 									if (inputFileStream.good()) { next6 = inputFileStream.get(); }
 									else {
-										inputFileStream.putback(next1); inputFileStream.putback(next2);
-										inputFileStream.putback(next3); inputFileStream.putback(next4);
-										inputFileStream.putback(next5);
+										for (int x = 0; x < 5; x++) { inputFileStream.unget(); }
 										break;
 									}
 									
@@ -147,9 +147,8 @@ void PGNFile::setGamePointers() {
 										next6 == '2') {
 										currentGameEnd = inputFileStream.tellg();
 									} else {
-										inputFileStream.putback(next1); inputFileStream.putback(next2);
-										inputFileStream.putback(next3); inputFileStream.putback(next4);
-										inputFileStream.putback(next5); inputFileStream.putback(next6);
+										for (int x = 0; x < 6; x++) { inputFileStream.unget(); }
+										break;
 									}
 								}
 								
@@ -168,10 +167,6 @@ void PGNFile::setGamePointers() {
 										} else {
 											inputFileStream.unget();
 											inputFileStream.unget();
-											
-											if (!inputFileStream.good()) {
-												std::cout << "\n" << "Input Stream got invalidated!";
-											}
 										}
 									}
 								}
@@ -210,7 +205,7 @@ void PGNFile::setGamePointers() {
 	
 	// Check the pointers for begin and end were properly set - Invalid state
 	if (currentGameBegin != 0 && currentGameEnd == 0) {
-		std::cout << "\n" << currentGameBegin << " " << std::endl;
+		// std::cout << "\n" << currentGameBegin << " " << std::endl;
 		throw parse_error("The game termination string was not found for a game ");
 	}
 }

@@ -21,12 +21,15 @@ int main(int argc, const char * argv[]) {
 	PGNFile f;
 	std::shared_ptr<PGNGame> g = nullptr;
 	try {
-		f = PGNFile(__COMPLEX_GAMES_FILE_PATH__ + "bali02.pgn");
+		f = PGNFile(__COMPLEX_GAMES_FILE_PATH__ + "GM_games.pgn");
 	} catch (std::exception & e) {
 		std::cout << "PGNFile error: " << e.what() << std::endl;
 		exit(0);
 	}
+	
+	std::cout << "\n Number of games: " << f.getGameCount() << std::endl;
 		
+	/*
 	try {
 		g = f.getGame(0);
 		std::cout << "Half Move Count: " << g->getHalfMoveCount() << std::endl;
@@ -37,6 +40,7 @@ int main(int argc, const char * argv[]) {
 	} catch (std::exception & e) {
 		std::cout << "\n Unknown Error: " << e.what() << std::endl;
 	}
+	 
 	
 	if (g->getFirstComment().length() > 0) {
 		std::cout << "{" << g->getFirstComment() << "}" << " ";
@@ -50,6 +54,7 @@ int main(int argc, const char * argv[]) {
 			printVariation(v);
 		}
 	}
+	 */
 	
 	std::cout << std::endl;
 }

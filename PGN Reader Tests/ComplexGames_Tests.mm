@@ -131,7 +131,7 @@
 - (void)test_kasp_top {
 	try {
 		PGNFile f(__COMPLEX_GAMES_FILE_PATH__ + "kasp_top.pgn");
-		XCTAssertTrue(f.getGameCount() == 62, @"Game count should be equal");
+		XCTAssertTrue(f.getGameCount() == 63, @"Game count should be equal");
 	} catch (std::exception & e) {
 		XCTFail(@"Unable to read from pgn database: %s", e.what());
 	}
