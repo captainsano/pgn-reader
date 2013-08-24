@@ -12,15 +12,23 @@
 #include "PGNGame.h"
 #include "PGNException.h"
 
+#define __COMPLEX_GAMES_FILE_PATH__ std::string("/Users/santhosbaala/Desktop/Projects/PGN Reader/PGN Reader Tests/complex games/")
 #define __TEST_FILE_PATH__ std::string("/Users/santhosbaala/Desktop/Projects/PGN Reader/PGN Reader Tests/")
 
 void printVariation(const PGNVariation & variation, int level = 0);
 
 int main(int argc, const char * argv[]) {
-	PGNFile f(__TEST_FILE_PATH__ + "commented_game.pgn");
-	std::shared_ptr<PGNGame> g = f.getGame(0);
-	
+	PGNFile f;
+	std::shared_ptr<PGNGame> g = nullptr;
 	try {
+		f = PGNFile(__COMPLEX_GAMES_FILE_PATH__ + "bali02.pgn");
+	} catch (std::exception & e) {
+		std::cout << "PGNFile error: " << e.what() << std::endl;
+		exit(0);
+	}
+		
+	try {
+		g = f.getGame(0);
 		std::cout << "Half Move Count: " << g->getHalfMoveCount() << std::endl;
 	} catch (illegal_move & e) {
 		std::cout << "\n Illegal move: " << e.what() << std::endl;
@@ -62,5 +70,4 @@ void printVariation(const PGNVariation & variation, int level) {
 			printVariation(v, level + 1);
 		}
 	}
-	std::cout << std::endl;
 }

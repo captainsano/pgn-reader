@@ -79,6 +79,7 @@ void PGNFile::setGamePointers() {
 				switch (ch) {
 					// Skip text commentary
 					case '{': {
+						recursionLevel++;
 						readingStatus = ReadingTextCommentary;
 						break;
 					}
@@ -173,8 +174,7 @@ void PGNFile::setGamePointers() {
 						
 						// Push the current <begin, end> tuple
 						if (currentGameEnd != 0) {
-							gamePointers.push_back(std::make_tuple(currentGameBegin  - static_cast<std::ios::pos_type>(1),
-																   currentGameEnd));
+							gamePointers.push_back(std::make_tuple(currentGameBegin - static_cast<std::ios::pos_type>(1), currentGameEnd));
 							currentGameBegin = 0;
 							currentGameEnd = 0;
 							readingStatus = ReadingMeta;
@@ -186,12 +186,15 @@ void PGNFile::setGamePointers() {
 			}
 				
 			case ReadingTextCommentary: {
-				if (ch == '{') { recursionLevel++; }
-				if (ch == '}') { recursionLevel--; }
-				if (recursionLevel == 0) {
-					readingStatus = ReadingMoveText;
+				if (ch == '{') {
+					recursionLevel++;
 				}
-				
+				if (ch == '}') {
+					recursionLevel--;
+					if (recursionLevel == 0) {
+						readingStatus = ReadingMoveText;
+					}
+				}
 				break;
 			}
 		}
@@ -199,7 +202,7 @@ void PGNFile::setGamePointers() {
 	
 	// Check the pointers for begin and end were properly set - Invalid state
 	if (currentGameBegin != 0 && currentGameEnd == 0) {
-		throw parse_error("The game termination string was not found for a game");
+		throw parse_error("The game termination string was not found for a game ");
 	}
 }
 
