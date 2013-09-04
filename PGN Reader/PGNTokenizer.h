@@ -74,7 +74,7 @@ namespace PGNTokenizer {
 		std::string textAnnotation;
 		std::vector<unsigned int> NAGs;
 		std::vector<std::shared_ptr<TempVariation>> variations;
-		// TODO Include commands withing annotation
+		// TODO: Include commands within annotation
 		
 		TempMove() = default;
 	};

@@ -27,6 +27,7 @@ public:
 	PGNFile(std::string fileName);
 	
 	unsigned int getGameCount();
+	std::string getGameString(unsigned int i);
 	std::shared_ptr<PGNGame> getGame(unsigned int i);
 };
 

@@ -119,6 +119,7 @@
 		636FDA8F17B7580A006BBAAD /* game_termination_inside_comment.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = game_termination_inside_comment.pgn; sourceTree = "<group>"; };
 		636FDA9117B75902006BBAAD /* PGNFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PGNFile.cpp; sourceTree = "<group>"; };
 		636FDA9217B75902006BBAAD /* PGNFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGNFile.h; sourceTree = "<group>"; };
+		636FF78D17D0CB2000B47925 /* PGNReader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PGNReader.h; sourceTree = "<group>"; };
 		63972FEB17BF893A004A323C /* PGNGame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PGNGame.cpp; sourceTree = "<group>"; };
 		63972FEC17BF893A004A323C /* PGNGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGNGame.h; sourceTree = "<group>"; };
 		63972FEF17BFB7C2004A323C /* PGNGame_Tests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PGNGame_Tests.mm; sourceTree = "<group>"; };
@@ -201,6 +202,7 @@
 				63028D9E17C529BF008BC1DF /* PGNVariationFactory.h */,
 				631573AA17C61E5700E66A6E /* PGNTokenizer.cpp */,
 				631573A617C61D8700E66A6E /* PGNTokenizer.h */,
+				636FF78D17D0CB2000B47925 /* PGNReader.h */,
 			);
 			path = "PGN Reader";
 			sourceTree = "<group>";

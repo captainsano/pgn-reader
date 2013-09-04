@@ -40,13 +40,22 @@ public:
 	
 	/* Iterator and Subscript access */
 	using const_iterator = decltype(mainVariation)::const_iterator;
-	const_iterator cbegin() { return mainVariation.cbegin(); }
-	const_iterator cend() { return mainVariation.cend(); }
+	const_iterator cbegin() {
+		if (!__moveTextParsed) this->parseMoveTextSection();
+		return mainVariation.cbegin();
+	}
+	const_iterator cend() {
+		if (!__moveTextParsed) this->parseMoveTextSection();
+		return mainVariation.cend();
+	}
 	
 	using size_type = decltype(mainVariation)::size_type;
 	using const_reference = decltype(mainVariation)::const_reference;
 
-	const_reference operator[] (size_type idx) { return mainVariation[idx]; }
+	const_reference operator[] (size_type idx) {
+		if (!__moveTextParsed) this->parseMoveTextSection();
+		return mainVariation[idx];
+	}
 };
 
 #endif /* defined(__PGN_Reader__PGNGame__) */
