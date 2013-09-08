@@ -31,6 +31,8 @@ public:
 	
 	inline bool hasVariations() const { return !(this->variations.empty()); }
 	
+	virtual std::string getSANString() const override;
+	
 	inline std::string getTextAnnotation() const { return this->textAnnotation; }
 	inline std::vector<PGNVariation> getVariations() const { return this->variations; }
 };

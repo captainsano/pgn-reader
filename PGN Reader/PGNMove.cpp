@@ -51,3 +51,44 @@ void PGNMove::appendTextAnnotation(const std::string & aTextAnnotation) {
 	
 	this->textAnnotation += aTextAnnotation;
 }
+
+std::string PGNMove::getSANString() const {
+	std::string SANString = sfc::cfw::Move::getSANString();
+	std::string NAGMoveAnnotation = "";	// We'll take the best of all matches
+	
+	for (auto NAGCode : this->NAGs) {
+		switch (NAGCode) {
+			case 1: {
+				NAGMoveAnnotation = "!";
+				break;
+			}
+				
+			case 2: {
+				NAGMoveAnnotation = "?";
+				break;
+			}
+				
+			case 3: {
+				NAGMoveAnnotation = "!!";
+				break;
+			}
+				
+			case 4: {
+				NAGMoveAnnotation = "??";
+				break;
+			}
+				
+			case 5: {
+				NAGMoveAnnotation = "!?";
+				break;
+			}
+				
+			case 6: {
+				NAGMoveAnnotation = "?!";
+				break;
+			}
+		}
+	}
+	
+	return SANString + NAGMoveAnnotation;
+}
