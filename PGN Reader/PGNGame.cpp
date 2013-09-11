@@ -11,6 +11,7 @@
 #include <regex>
 #include <vector>
 #include <stack>
+#include <sstream>
 
 #include "PGNException.h"
 
@@ -580,9 +581,69 @@ void PGNGame::parseMoveTextSection() {
 	}
 	
 	/*-------------------------- Legality Checking for a variation -----------------------------*/
-	std::shared_ptr<PGNVariation> variation = PGNVariationFactory::legalVariation(*currentTempVariation, sfc::cfw::GameState("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR",
-																															 sfc::cfw::ColorWhite,
-																															 "KQkq"));
+	sfc::cfw::GameState startingGameState;
+	if (!(this->meta.count("FEN"))) {
+		startingGameState = sfc::cfw::GameState("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR", sfc::cfw::ColorWhite, "KQkq");
+	} else {
+		// Decipher position from FEN
+		std::stringstream fenStream(this->meta["FEN"]);
+		std::string currentToken;
+
+		std::string piecePlacement;
+		sfc::cfw::Color sideToPlay;
+		std::string castlingOptions;
+		sfc::cfw::Square enPassantTarget;
+		
+		int idx = 0;
+		while (std::getline(fenStream, currentToken, ' ')) {
+			switch (idx) {
+				case 0: {	// Piece placement
+					piecePlacement = currentToken;
+					break;
+				}
+				
+				case 1: {	// Side to play
+					sideToPlay = (currentToken == "w")?sfc::cfw::ColorWhite:sfc::cfw::ColorBlack;
+					break;
+				}
+					
+				case 2: {	// Castling options
+					if (currentToken.find("K") != std::string::npos) { castlingOptions += "K"; }
+					else { castlingOptions += "-"; }
+					if (currentToken.find("Q") != std::string::npos) { castlingOptions += "Q"; }
+					else { castlingOptions += "-"; }
+					if (currentToken.find("k") != std::string::npos) { castlingOptions += "k"; }
+					else { castlingOptions += "-"; }
+					if (currentToken.find("q") != std::string::npos) { castlingOptions += "q"; }
+					else { castlingOptions += "-"; }
+					break;
+				}
+					
+				case 3: {	// Enpassant Target
+					if (currentToken == "-") { enPassantTarget = 0; }
+					else { enPassantTarget = sfc::cfw::Square(currentToken); }
+					break;
+				}
+					
+				case 4: {	// Halfmove clock
+					// Ignore
+					break;
+				}
+					
+				case 5: {	// Full Move Number
+					this->firstMoveNumber = atoi(currentToken.c_str());
+					break;
+				}
+			}
+			
+			idx++;
+		}
+		
+		startingGameState = sfc::cfw::GameState(piecePlacement, sideToPlay, castlingOptions, enPassantTarget);
+	}
+
+	std::shared_ptr<PGNVariation> variation = PGNVariationFactory::legalVariation(*currentTempVariation, startingGameState);
+			
 	this->mainVariation = std::move(*variation);
 	__moveTextParsed = true;
 }

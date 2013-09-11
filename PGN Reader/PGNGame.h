@@ -17,6 +17,8 @@ class PGNGame {
 	bool __metaParsed		= false;
 	bool __moveTextParsed	= false;
 	
+	unsigned int firstMoveNumber = 1;
+	
 	std::string		gameString;
 	unsigned int	moveTextSectionBeginOffset;
 	
@@ -33,6 +35,7 @@ public:
 	
 	std::string	getMeta(std::string key);
 	
+	inline unsigned int getFirstMoveNumber() const { return this->firstMoveNumber; }
 	std::string	getFirstComment();
 	auto getHalfMoveCount() -> decltype(mainVariation.size());
 	
