@@ -65,15 +65,21 @@ std::shared_ptr<PGNVariation> PGNVariationFactory::legalVariation(const PGNToken
 				}
 			}
 		} else {
-			// Search through all the squares for the piece and check if the move is legal
-			for (unsigned int fromSquare = 0; fromSquare < 64; fromSquare++) {
-				if ((*(currentGameState.getPosition()))[fromSquare] == pieceMoved) {
-					internalMove = internalMove = sfc::cfw::MoveFactory::legalMove(std::make_shared<sfc::cfw::GameState>(currentGameState),
-																				   fromSquare,
-																				   sfc::cfw::Square(m->toFile, m->toRank),
-																				   m->promotedPiece);
-					if (internalMove != nullptr) {
-						break;
+			// Look for NULL move
+			if (m->fromFile == SHRT_MAX && m->fromRank == SHRT_MAX &&
+				m->toFile == SHRT_MAX && m->fromFile == SHRT_MAX) {
+				internalMove = sfc::cfw::MoveFactory::legalMove(std::make_shared<sfc::cfw::GameState>(currentGameState), 0, 0);
+			} else {
+				// Search through all the squares for the piece and check if the move is legal
+				for (unsigned int fromSquare = 0; fromSquare < 64; fromSquare++) {
+					if ((*(currentGameState.getPosition()))[fromSquare] == pieceMoved) {
+						internalMove = internalMove = sfc::cfw::MoveFactory::legalMove(std::make_shared<sfc::cfw::GameState>(currentGameState),
+																					   fromSquare,
+																					   sfc::cfw::Square(m->toFile, m->toRank),
+																					   m->promotedPiece);
+						if (internalMove != nullptr) {
+							break;
+						}
 					}
 				}
 			}
@@ -81,7 +87,7 @@ std::shared_ptr<PGNVariation> PGNVariationFactory::legalVariation(const PGNToken
 		
 		if (internalMove == nullptr) {
 			std::string errorString = "Illegal Move: ";
-			errorString += std::to_string(pieceMoved) + " ";
+			errorString += sfc::cfw::getFENPieceSymbol(pieceMoved);
 			errorString += "(" + std::to_string(m->fromFile) + ", " + std::to_string(m->fromRank) + ") -> ";
 			errorString += "(" + std::to_string(m->toFile) + ", " + std::to_string(m->toRank) + ")";
 			throw illegal_move(errorString);
