@@ -1,0 +1,56 @@
+[Event "FIDE World Cup "]
+[Site "Tromso "]
+[Date "2013.??.??"]
+[Round "?"]
+[White "Kramnik, Vladimir"]
+[Black "Areshchenko, Alexander"]
+[Result "1-0"]
+[ECO "D85"]
+[WhiteElo "2784"]
+[BlackElo "2709"]
+[Annotator "GM Lubomir Kavalek/ The Huffington Post"]
+[PlyCount "61"]
+[EventDate "2013.??.??"]
+
+1. d4 Nf6 2. c4 g6 3. Nc3 d5 4. cxd5 Nxd5 5. e4 Nxc3 6. bxc3 Bg7 7. Be3
+{This line almost forces the queen exchange. The queenless middle game
+can be still dangerous for black.} c5 8. Rc1 Qa5 9. Qd2 cxd4 10. cxd4
+Qxd2+ 11. Bxd2 {A flexible choice, giving white the possibilitity to castle
+short.} O-O 12. Nf3 e6 {The current fashion. After the previously popular
+12...Bg4 white usually ends up playing an endgame with a bishop pair.
+And Kramnik likes that.} (12... Bg4) 13. Bb5 $5 {An annoying move, preventing
+smooth development. Kramnik is also playing the percentages. The bishop
+move has over 70 percent rate of success. Areshchenko was probably expecting
+the more modest 13.Bc4, played by Kramnik against Fabiano Caruana in Dortmund,
+Germany, just before the World Cup. Kramnik won in 76 moves, but not because
+of his opening play.} Nc6 14. Be3 ({Kramnik does a little tweaking, waiting
+before he takes on c6. In his game against Mamedyarov, Moscow 2010, he
+chose} 14. Bxc6 bxc6 15. O-O {, but black was able to activate his light
+bishop with} Ba6 16. Rfe1 Bb5) 14... Rd8 (14... Bd7) 15. Bxc6 bxc6 16.
+Ne5 $5 $146 {A novelty, recommended by a few computer engines.} (16. O-O)
+16... Bb7 17. f3 {Preventing 17...c5 and creating a hiding place for his
+king on f2. This is a new concept. White doesn't take the pawn on c6.}
+Bxe5 $2 {The bishops of opposite colors do not guarantee equality. Blackâ
+[]s position has too many holes.} ({Interesting play may occur after}
+17... Rac8 18. Nd3 Bxd4 19. Bxd4 Rxd4 20. Nc5 Ba8 21. Ke2 Rcd8 22. Rhd1
+{white has a dominating knight. The extra c-pawn burries the bad bishop
+and brings more suffering than joy. Aaron Nimzowitsch, the author of My
+System and The Blockade, would have been delighted to have this position
+with the white pieces.}) 18. dxe5 Rd3 {Black does not have time to repair
+the dark square weaknesses with 18...Kg7 and 19...h6.} ({After} 18...
+Kg7 19. Bg5 Rd4 20. Kf2 h6 21. Bf6+ Kf8 22. Rhd1 {white dominates on the
+black squares.}) ({Giving up a pawn for freedom does not work: after}
+18... c5 19. Rxc5 Rac8 20. Rxc8 Rxc8 21. Bh6 {the black king is locked
+in and white has a dangerous initiative, for example} Rc5 22. Kf2 Rxe5
+$2 23. Rd1 {and white wins.}) 19. Kf2 Rad8 20. Bg5 R8d7 21. h4 {Kramnik's
+favorite advance in the Grunfeld, trying to open the h-file. He played
+it in many forms and shapes.} h5 22. Kg3 Kh7 23. Rc2 c5 24. Rxc5 Bxe4
+{The exchange of pawns allows the white rook to enter the eighth rank,
+creating mating threats.} 25. Rc8 Bb7 26. Rf8 {Black has to do something
+against the threat 27.Bf6.} f5 ({Forced. After} 26... Kg7 27. Re8 f5 28.
+exf6+ Kf7 29. Rh8 {wins.}) 27. exf6 {Kramnik has a strong advanced passed
+pawn and black king is still unsafe. No doubts, white can force a win.}
+e5 28. Re8 e4 29. Rb1 $1 {Preparing a nice tactical finish.} exf3 30.
+Rxb7 $1 fxg2+ 31. Kxg2 (31. Kxg2 Rxb7 32. Re7+ Rxe7 33. fxe7 {white queens.})
+1-0
+

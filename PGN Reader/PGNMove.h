@@ -19,8 +19,7 @@ class PGNMove : public sfc::cfw::Move {
 	std::vector<unsigned int> NAGs;
 	
 	std::vector<PGNVariation> variations;
-	
-public:
+public:	
 	PGNMove() = default;
 	PGNMove(const Move & aMove, std::vector<PGNVariation> aVariations = {}, std::vector<unsigned int> aNAGs = {}, const std::string & aTextAnnotation = "");
 	
@@ -29,12 +28,15 @@ public:
 	void addNAG(const unsigned int & aNAG);
 	void appendTextAnnotation(const std::string & aTextAnnotation);
 	
-	inline bool hasVariations() const { return !(this->variations.empty()); }
-	
 	virtual std::string getSANString() const override;
 	
 	inline std::string getTextAnnotation() const { return this->textAnnotation; }
-	inline std::vector<PGNVariation> getVariations() const { return this->variations; }
+	inline const std::vector<PGNVariation> & getVariations() const {
+		return this->variations;
+	}
+	
+	inline bool hasVariations() const { return !(this->variations.empty()); }
+	inline bool hasTextAnnotation() const { return (this->textAnnotation.size() > 0)?true:false; }
 };
 
 #endif /* defined(__PGN_Reader__PGNMove__) */

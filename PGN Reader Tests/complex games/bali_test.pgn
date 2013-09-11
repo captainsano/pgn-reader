@@ -1,0 +1,74 @@
+[Event "Superstars Hotel Bali"]
+[Site "Benidorm ESP"]
+[Date "2002.11.29"]
+[Round "3"]
+[White "Polgar, Judit"]
+[Black "Shirov, Alexei"]
+[Result "1/2-1/2"]
+[ECO "E67"]
+[WhiteElo "2685"]
+[BlackElo "2699"]
+[PlyCount "126"]
+[EventDate "2002.11.29"]
+
+1. c4
+{ I don't recall ever seeing Polgar play 1. c4, so this ought to be interesting. When these two first met in tournaments Polgar won handily, then Shirov moved ahead and Polgar has been working hard to catch up. This tournament shows some of the results of that work. }
+1...e5 2. g3 g6
+{ Though a popular set-up (nowadays) I usually avoid developing a piece where it will be blocked (as Bg7 is blocked by Pe5) . }
+ ( 2...Nf6 ) ( 2...f5 ) ( 2...Nc6 ) 3. Bg2 Bg7 4. Nc3 Nf6 5. Nf3 ( 5. d3 ) 5...d6 6. O-O O-O 7. d4
+{ Now it's just transposed to a King's Indian Defense, Fianchetto Variation which is still considered good for White, though the players involved make the difference. In this case Shirov as Black should be up to the task. }
+7...Nbd7 ( 
+{ Shirov usually likes to play }
+ 7...Nc6 
+{ but after }
+ 8. d5 Ne7 
+{ White has the upper hand since her king-side is very safe and the queen-side play is still available. Perhaps this is what she had expected. }
+ ) 8. Qc2
+{ defending Nc3 to prepare b2-b3, Bc1-b2 and clearing the d-file to align Rd1 with Qd8 }
+8...Re8 9. Rd1 exd4 $5
+{ Shirov changes the direction of the game and leaves Qd8 a bit cramped. }
+ ( 9...c6 
+{ is the common move which has been played for about 40 years }
+ ) 10. Nxd4 a5 11. e4 Nc5 12. f3 $5
+{ Often h2-h3 is used to guard g4, but in this case Pf3 defends Pe4 and guards g4. Later on it might advance further and Pg3 won't have been weakened. It's hard to say at this point whether it's especially better. }
+12...c6
+{ Finally Shirov activates his queen at the cost of weakening Pd6. A lot of games have been won with the Black pieces from this opening and many have been tense dramatic struggles. }
+13. Be3 Qe7 ( 13...a4 
+{ Making room for ...Qd8-a5 is probably more common. }
+ ) 14. Bf2
+{ It's easier to retreat off the e-file than to defend Be3. }
+14...Nfd7 15. b3 Ne5
+{ White's pawns are pretty safe, but her pieces will have to be activated and brought into the battle in a more aggressive way, as the game progresses, if she's to win. }
+16. h3 Ned7 17. Rd2 Bh6 18. Re2 f6 19. f4
+{ White creeps forward... }
+19...Nf8
+{ Black crouches in a kind of Hedgehog formation. }
+20. Rd1 Bd7 21. Ree1 Rad8 22. a3 Bc8 23. b4 axb4 24. axb4 Nce6 25. Nde2
+{ At this point it's hard to say what White's plan is, besides keeping Shirov restrained and cramped. The open a-file might be of some use, but the center might become active again in a moment, so it seems to be only a slight advantage to White. }
+ ( 25. Nf3 ) 25...Qc7 26. Qb3 Kh8 27. Rc1
+{ aligning with Qc7 and possibly preparing Nc3-d5 }
+27...Qf7 28. Na4
+{ After this it looks like Ne2 might go to c3 while Na4 then becomes the awkward piece which might go to b6, c5 (if Pd6 moves) or b2. }
+28...Nc7 29. Nb6 Qg8 ( 29...Be6 30. Bd4 Bg7 ) 30. Nxc8 Rxc8 31. Qc2
+{ Qb3 was undefended and she wanted to avoid complications stemming from ...b7-b5. }
+31...Nd7 32. Red1 Bf8 33. Bd4 Ra8 34. h4
+{ This could be to free Bg2 or to threaten h4-h5xg6 to create an attack on the h-file. At this point it might seem to White that trading pieces (such as Rc1-a1) is risky because there are several weak pawns which need defenders. }
+ ( 34. Ra1 Be7 35. h4 Rxa1 36. Rxa1 Ra8 37. Qc3 ( 37. Bh3 $6 Rxa1+ 38. Bxa1 Nb6 ) ) 34...Qf7 35. Bh3 Ne6 36. Bb2 Nb6 37. Nd4 Nc7 38. Nf3 Kg8 39. e5
+{ She chose a good moment for this advance; after Black had moved toward the queen-side and weakened his control of e5. It might have also been a 40-move time control. }
+39...dxe5 40. fxe5 Ra2 ( 40...f5 
+{ blocks out Bh3 and exposes Pb4 to a threat, but leaves Pe5 passed and mobile }
+ 41. Ng5 Qe7 ) 41. Qb3 Rxb2 $5 42. Qxb2 Nxc4 43. e6 ( 43. Rxc4 Qxc4 44. exf6 Qxb4 
+{ the obvious plausible move }
+ ( 44...Re3 $13 
+{ a less than obvious computer move }
+ ) 45. f7+ Kxf7 46. Rd7+ Kg8 47. Qxb4 Bxb4 48. Rxc7 $16 ) 43...Nxb2 44. exf7+ Kxf7 45. Rd7+ Re7 46. Rc2 $4
+{ costs a pawn }
+ ( 46. Rxe7+ Bxe7 47. Bc8 Bxb4 48. Bxb7 c5 
+{ when the passed pawn probably gives Black all the winning chances, despite being down an exchange! }
+ ) 46...Rxd7 47. Bxd7 Nd3 48. Bc8 Nxb4 49. Rb2 b5
+{ This ought to be a decisive advantage for Black: the two passed pawns are awfully hard to stop. }
+50. Kg2 c5 51. Rd2 Nbd5 52. Bb7 Ke6 53. Re2+ Kd7 54. Nd2 c4 55. Ne4
+{ White's Ne4 & Bb6 help to corral Black's king and Black doesn't want to play ...f6-f5 which allows Ne4-g5xh7 and White counterplay. }
+55...Be7 56. Rd2 Ke6 57. Re2 Kf7 58. Rd2 Ke6 ( 58...c3 $19 59. Rxd5 ( 59. Nxc3 Nxc3 ) 59...c2 ) 59. Re2 Kf7 60. Rd2 Nb6 61. Nd6+ Ke6 62. Nxb5 Nxb5 63. Rb2 Bc5
+{ Shirov must have been in time pressure because this position still offers Black obvious chances to win. }
+ ( 63...Nd4 64. Rxb6+ Bd6 65. Bc8+ Kd5 66. Bb7+ Kc5 67. Ra6 c3 68. Ra1 c2 69. Rc1 Bxg3 $17 ) 1/2-1/2

@@ -442,6 +442,24 @@ void PGNGame::parseMoveTextSection() {
 						break;
 					}
 						
+					case PGNTokenizer::TokenVariationEnd: {
+						// Return to m2 in case the variation is
+						// at recursion level 1
+						if (RAVStack.size() == 1) {
+							currentState = MoveTextReadStateM2;
+						} else {
+							currentState = MoveTextReadStateM3;
+						}
+						
+						// Restore the currentTemp and previous move variables from stack
+						std::tuple<decltype(currentTempVariation), decltype(prevMove)> toRestore = RAVStack.top();
+						currentTempVariation = std::get<0>(toRestore);
+						prevMove = std::get<1>(toRestore);
+						// Remove the top element from the stack
+						RAVStack.pop();
+						break;
+					}
+						
 					default: {
 						throw parse_error("Invalid token encountered: " + t.contents + " " + std::to_string(__LINE__));
 						break;

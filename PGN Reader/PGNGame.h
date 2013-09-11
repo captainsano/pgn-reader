@@ -31,8 +31,6 @@ public:
 	PGNGame() = default;
 	PGNGame(const std::string & pgnString);
 	
-	
-	
 	std::string	getMeta(std::string key);
 	
 	std::string	getFirstComment();
