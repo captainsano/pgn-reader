@@ -211,13 +211,15 @@ std::string PGNFile::getGameString(unsigned int i) {
 		throw std::out_of_range("The index i is not in range");
 	}
 	
-	std::string gameString;
 	inputFileStream.clear();
 	inputFileStream.seekg(std::get<0>(gamePointers[i]));
 	
-	while (inputFileStream.good() && inputFileStream.tellg() != std::get<1>(gamePointers[i])) {
-		gameString += inputFileStream.get();
-	}
+	auto size = std::get<1>(gamePointers[i]) - std::get<0>(gamePointers[i]);
+	
+	std::string gameString;
+	gameString.resize(size);
+	
+	inputFileStream.read(&gameString[0], size);
 	
 	return gameString;
 }
