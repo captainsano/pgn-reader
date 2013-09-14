@@ -217,9 +217,10 @@ std::string PGNFile::getGameString(unsigned int i) {
 	auto size = std::get<1>(gamePointers[i]) - std::get<0>(gamePointers[i]);
 	
 	std::string gameString;
-	gameString.resize(size);
-	
-	inputFileStream.read(&gameString[0], size);
+	gameString.reserve(size);
+	char buffer[size];
+	inputFileStream.read(buffer, sizeof(buffer));
+	gameString.append(buffer, inputFileStream.gcount());
 	
 	return gameString;
 }
