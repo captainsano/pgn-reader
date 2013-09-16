@@ -16,15 +16,20 @@ class PGNVariation;
 
 class PGNMove : public sfc::cfw::Move {
 	std::string textAnnotation;
+	std::vector<unsigned int> preNAGs;
 	std::vector<unsigned int> NAGs;
 	
 	std::vector<PGNVariation> variations;
 public:	
 	PGNMove() = default;
-	PGNMove(const Move & aMove, std::vector<PGNVariation> aVariations = {}, std::vector<unsigned int> aNAGs = {}, const std::string & aTextAnnotation = "");
+	PGNMove(const Move & aMove, std::vector<PGNVariation> aVariations = {},
+			std::vector<unsigned int> aPreNAGs = {},
+			std::vector<unsigned int> aNAGs = {},
+			const std::string & aTextAnnotation = "");
 	
 	void addVariation(const PGNVariation & aVariation);
 	
+	void addPreNAG(const unsigned int & aPreNAG);
 	void addNAG(const unsigned int & aNAG);
 	void appendTextAnnotation(const std::string & aTextAnnotation);
 	

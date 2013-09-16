@@ -9,7 +9,7 @@
 #include "PGNMove.h"
 #include "PGNVariation.h"
 
-PGNMove::PGNMove(const Move & aMove, std::vector<PGNVariation> aVariations, std::vector<unsigned int> aNAGs, const std::string & aTextAnnotation) : Move(aMove) {
+PGNMove::PGNMove(const Move & aMove, std::vector<PGNVariation> aVariations, std::vector<unsigned int> aPreNAGs, std::vector<unsigned int> aNAGs, const std::string & aTextAnnotation) : Move(aMove) {
 	// Check if all the variations have the same before game state
 	for (auto v : aVariations) {
 		this->addVariation(v);
@@ -34,6 +34,14 @@ void PGNMove::addVariation(const PGNVariation & aVariation) {
 	} else {
 		throw std::invalid_argument("The new variation's game state before move does not match");
 	}
+}
+
+void PGNMove::addPreNAG(const unsigned int & aPreNAG) {
+	for (auto n : this->preNAGs) {
+		if (n == aPreNAG) return;
+	}
+	
+	this->preNAGs.push_back(aPreNAG);
 }
 
 void PGNMove::addNAG(const unsigned int & aNAG) {

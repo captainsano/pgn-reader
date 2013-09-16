@@ -72,6 +72,7 @@ namespace PGNTokenizer {
 		sfc::cfw::PromotablePiece promotedPiece = sfc::cfw::PromotablePieceNone;
 		
 		std::string textAnnotation;
+		std::vector<unsigned int> preNAGs;
 		std::vector<unsigned int> NAGs;
 		std::vector<std::shared_ptr<TempVariation>> variations;
 		// TODO: Include commands within annotation

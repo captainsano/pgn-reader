@@ -255,6 +255,7 @@ void PGNGame::parseMoveTextSection() {
 	// Variation stack to recurse across RAVs - Stack is empty while parsing main line
 	// current variation, move and annotation.
 	std::stack<std::tuple<decltype(currentTempVariation), decltype(prevMove)>> RAVStack;
+	std::vector<unsigned int> preNAGs;
 		
 	auto i = gameString.cbegin() + moveTextSectionBeginOffset;
 	for (; i != gameString.cend(); ) {
@@ -277,6 +278,11 @@ void PGNGame::parseMoveTextSection() {
 						break;
 					}
 						
+					case PGNTokenizer::TokenNAG: {
+						preNAGs.push_back(atoi(t.contents.c_str()));
+						break;
+					}
+						
 					case PGNTokenizer::TokenMoveNumber: {
 						currentState = MoveTextReadStateM1;
 						// Do nothing
@@ -289,6 +295,12 @@ void PGNGame::parseMoveTextSection() {
 						currentMove = std::make_shared<PGNTokenizer::TempMove>();
 						fillTempMoveWithToken(*currentMove, t);
 						currentTempVariation->moves.push_back(currentMove);
+						
+						// Fill the temp move with pre nags if any
+						for (auto n : preNAGs) {
+							currentMove->preNAGs.push_back(n);
+						}
+						preNAGs.clear();
 						
 						// Reset the current move pointer to NULL
 						prevMove = currentMove;
@@ -377,6 +389,12 @@ void PGNGame::parseMoveTextSection() {
 						fillTempMoveWithToken(*currentMove, t);
 						currentTempVariation->moves.push_back(currentMove);
 						
+						// Fill the temp move with pre nags if any
+						for (auto n : preNAGs) {
+							currentMove->preNAGs.push_back(n);
+						}
+						preNAGs.clear();
+						
 						// Reset the current move pointer to NULL
 						prevMove = currentMove;
 						currentMove = nullptr;
@@ -422,6 +440,11 @@ void PGNGame::parseMoveTextSection() {
 							currentTempVariation->firstComment += " ";
 						}
 						currentTempVariation->firstComment += t.contents;
+						break;
+					}
+						
+					case PGNTokenizer::TokenNAG: {
+						preNAGs.push_back(atoi(t.contents.c_str()));
 						break;
 					}
 						
@@ -471,6 +494,12 @@ void PGNGame::parseMoveTextSection() {
 						fillTempMoveWithToken(*currentMove, t);
 						currentTempVariation->moves.push_back(currentMove);
 						
+						// Fill the temp move with pre nags if any
+						for (auto n : preNAGs) {
+							currentMove->preNAGs.push_back(n);
+						}
+						preNAGs.clear();
+						
 						// Reset the current move pointer to NULL
 						prevMove = currentMove;
 						currentMove = nullptr;
@@ -516,6 +545,12 @@ void PGNGame::parseMoveTextSection() {
 						currentMove = std::make_shared<PGNTokenizer::TempMove>();
 						fillTempMoveWithToken(*currentMove, t);
 						currentTempVariation->moves.push_back(currentMove);
+						
+						// Fill the temp move with pre nags if any
+						for (auto n : preNAGs) {
+							currentMove->preNAGs.push_back(n);
+						}
+						preNAGs.clear();
 						
 						// Reset the current move pointer to NULL
 						prevMove = currentMove;
