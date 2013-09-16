@@ -45,6 +45,8 @@ PGNTokenizer::Token PGNTokenizer::nextToken(std::string::const_iterator begin, s
 		case '\t':
 		case '\v': {
 			toReturn.type = TokenWhiteSpace;
+			i++;	// For ' '
+			toReturn.charactersConsumed++;
 			while (i != end) {
 				if (*i == ' ' || *i == '\r' || *i == '\n' || *i == '\t' || *i == '\v') {
 					toReturn.contents += *i;
@@ -83,6 +85,9 @@ PGNTokenizer::Token PGNTokenizer::nextToken(std::string::const_iterator begin, s
 			
 		case '.': {
 			toReturn.type = TokenDot;
+			i++;	// For '.'
+			toReturn.contents = ".";
+			toReturn.charactersConsumed++;
 			while (i != end) {
 				if (*i != '.') {
 					break;
