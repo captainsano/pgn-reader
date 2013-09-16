@@ -88,7 +88,7 @@ void PGNGame::parseMetaSection() {
 					}
 						
 					default: {
-						throw parse_error("Character was not recognizable: " + std::string({*i}));
+						// Ignore the unknown characters
 						break;
 					}
 				}

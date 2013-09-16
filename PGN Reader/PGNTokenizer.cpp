@@ -20,6 +20,23 @@ PGNTokenizer::Token PGNTokenizer::nextToken(std::string::const_iterator begin, s
 	
 	// Try to recognize the tokens using the first character.
 	switch (*i) {
+		// Characters to skip
+		case '%': {
+			// Pass through till the end of the line
+			toReturn.type = TokenWhiteSpace;
+			toReturn.contents = "";
+			i++;	// For '%'
+			toReturn.charactersConsumed++;
+			while (i != end) {
+				if (*i == '\n' || *i == '\r') {
+					break;
+				}
+				i++;
+				toReturn.charactersConsumed++;
+			}
+			break;
+		}
+			
 			/*----------------- Long Recurring Strings -------------------*/
 		case ' ':
 		case '\r':
@@ -495,6 +512,12 @@ PGNTokenizer::Token PGNTokenizer::nextToken(std::string::const_iterator begin, s
 			}
 			
 			break;
+		}
+			
+		default: {
+			toReturn.type = TokenInvalid;
+			toReturn.contents += *i;
+			toReturn.charactersConsumed++;
 		}
 	}
 	

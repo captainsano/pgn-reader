@@ -70,8 +70,7 @@ void PGNFile::setGamePointers() {
 					}
 						
 					default: {
-						// Invalid character encountered
-						throw parse_error("Invalid character encountered while searching for meta data");
+						// Invalid character encountered - Ignore
 						break;
 					}
 				}
