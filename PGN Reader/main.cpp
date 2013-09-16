@@ -21,7 +21,7 @@ int main(int argc, const char * argv[]) {
 	std::shared_ptr<PGNGame> g = nullptr;
 	try {
 		// f = PGNFile(__TEST_FILE_PATH__ + "kramnik_huffington.pgn");
-		f = PGNFile(__COMPLEX_GAMES_FILE_PATH__ + "bali02.pgn");
+		f = PGNFile(__COMPLEX_GAMES_FILE_PATH__ + "chess-informant-sample.pgn");
 	} catch (std::exception & e) {
 		std::cout << "PGNFile error: " << e.what() << std::endl;
 		exit(0);
